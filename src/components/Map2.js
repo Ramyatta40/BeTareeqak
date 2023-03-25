@@ -19,6 +19,7 @@ import {
     DirectionsRenderer,
   } from '@react-google-maps/api'
   import { useRef, useState } from 'react'
+  // write npm i @chakra-ui/react react-icons @react-google-maps/api------------------------------------------------------------
   
   const center = { lat:31.963158 , lng:35.930359 }
   
