@@ -6,3 +6,9 @@
       transform: translateX(-50%);
     }
   }
+
+  .Navbar {
+
+    background: transparent;
+    backdrop-filter: blur(10px);
+  }
