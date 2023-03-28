@@ -1,7 +1,10 @@
-import React from "react";
+import React from 'react';
+import './About.css';
 
-const About = () => {
-  return <div>About123</div>;
-};
+function About() {
+  return (
+<div>asada</div> 
+  );
+}
 
 export default About;
