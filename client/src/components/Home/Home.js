@@ -1,6 +1,5 @@
 import React from 'react';
 import './Home.css';
-import Button from 'react-bootstrap/Button';
 
 //https://source.unsplash.com/random/1920x1080//
 //https://wallpapershome.com/images/pages/pic_h/17125.jpg
@@ -13,8 +12,7 @@ function Home() {
         <div className="row h-100 m-0">
           <div className="col-12 d-flex flex-column justify-content-center align-items-center">
             <h1 className="text-white mb-4">Welcome to BeTareeqak</h1>
-            <Button variant="outline-danger" className="btn">Start the journey now</Button>
-
+            <button className='buttonhome'>Start the journey now</button>
 
           </div>
         </div>
