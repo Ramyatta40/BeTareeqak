@@ -78,14 +78,14 @@ function clearRoute() {
 }
 
 return (
-  <Flex 
+  <Flex className="A2"
     position='absolute'
     flexDirection='column'
     alignItems='center'
-    h='90vh'
-    w='90vw'
+    h='100vh'
+    w='100wh'
   >
-    <Box  position='absolute' left={0} top={0} h='100%' w='100%'>
+    <Box className="A3" position='absolute' left={0} top={0} h='100%' w='100%'>
       {/* Google Map Box */}
       <GoogleMap 
         center={center}
