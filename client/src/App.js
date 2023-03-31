@@ -6,7 +6,7 @@ import Home from "./components/Home/Home";
 import About from "./components/About";
 import Map from "./components/Map/Map";
 import Rode from "./components/Rode/Rode";
-
+import Login from "./components/authentication/Login";
 
 const App = () => {
   return (
@@ -22,6 +22,7 @@ const App = () => {
 
           <Route path="/Rode" element={<Rode />} />
           <Route path="/about" element={<About />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
       </Container>
 

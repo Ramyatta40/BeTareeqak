@@ -21,11 +21,12 @@ const Navbar = () => {
             <Nav.Link to="/Map" as={NavLink}>
               Map
             </Nav.Link>
-            <Nav.Link to="/about" as={NavLink}>
-              About
-            </Nav.Link>
+
             <Nav.Link to="/Rode" as={NavLink}>
               Rode
+            </Nav.Link>
+            <Nav.Link to="/about" as={NavLink}>
+              Contact us
             </Nav.Link>
           </Nav>
         </NavbarBs.Collapse>
