@@ -1,5 +1,6 @@
 .Home {
   height: 100vh;
+
 }
 
 
@@ -13,6 +14,7 @@
   object-fit: cover;
   object-position: center;
   z-index: -1;
+
 }
 
 .row {
@@ -240,7 +242,7 @@ html, body {
     display: inline-block;
     vertical-align: middle;
     font-size: 0;
-    height: 100%;
+    height: 0%;
     }
 
 h1 {
