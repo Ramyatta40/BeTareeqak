@@ -1,6 +1,6 @@
 import React from 'react';
 import './Rode.css';
-
+import TripRow from './TripRow';
 function Rode() {
   return (
     <div className="journeyTable">
@@ -15,7 +15,7 @@ function Rode() {
           </tr>
         </thead>
         <tbody>
-          {/* Render trip data from Firebase */}
+          <TripRow/>
         </tbody>
       </table>
       <button>Start Journey</button>
