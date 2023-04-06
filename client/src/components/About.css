@@ -6,9 +6,14 @@
 	box-sizing: border-box;
 }
 
+body {
+    height: 10vh;
+    display: grid;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
 
-
-.zaraki{
+/*.zaraki{
     height: 100vh;
     display: flex;
     align-items: center;
@@ -17,7 +22,7 @@
     position: absolute;
     top: 0;
     left: 0;
-}
+}*/
 
 .contact-wrap {
 	width: 80%;
