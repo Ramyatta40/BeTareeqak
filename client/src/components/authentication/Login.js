@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import React,{useState,useEffect} from 'react';
+import { signInWithEmailAndPassword,onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebaseAuth';
 import './Login.css';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,7 +10,28 @@ import './Login.css';
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // user state declaration -------------------------------------------------------------------
+  const [authUser, setAuthUser] = useState(null);
 
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (user) => {
+  
+      if (user) {
+        setAuthUser(user);
+        
+      } else {
+        setAuthUser(null);
+        
+      }
+  
+      return () => {
+        listen();
+      };
+    });
+  }, []);
+// user state declaration -------------------------------------------------------------------
+
+  // onClick 
   const signIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -20,7 +41,13 @@ function Login() {
       .catch((error) => {
         console.log(error);
       });
-  
+
+      if (authUser) {
+        window.location.href = '/Map';
+      } else {
+        
+      }
+      
   
     };
 
@@ -54,7 +81,7 @@ function Login() {
           </a>
           <input type="submit" value="Login" />
         </form>
-        <a href="#" className="sign-up">
+        <a href="/Register" className="sign-up">
           Sign Up
         </a>
       </div>
