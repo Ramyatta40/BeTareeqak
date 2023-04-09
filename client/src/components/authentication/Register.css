@@ -1,94 +1,85 @@
-*
+/* Set default styles for all devices */
+/*body
 {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+      padding: 0;
+      background:url("C:\Users\Dell\Downloads\p9mUO.jpg") ;
+      background-size: cover;
+      font-size: 16px;
+    }*/
+.signup-form {
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(101, 102, 114, 0.7);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border-radius: 5px;
 }
-body
-{
-    font-family: "Open Sans",
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+.title {
+  color: rgba(0, 0, 0, 0.282);
+  font-family: Arial, Helvetica, sans-serif;
 }
-.main-parent
-{
-     width: 100%;
-    height: 100vh;
-   /*background-image: url();
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-position: top;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.signup-form input {
+  display: block;
+  width: 100%;
+  padding-left: 10px;
+  height: 44px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
 }
-.main-parent .form-wrap
-{
-    width: 450px;
-    background: rgb(255 255 255 / 75%);
-    border-radius: 10px;
-    padding: 35px 40px;
-    backdrop-filter: blur(5px);
+
+.txt {
+  margin: 20px 0px;
+  border-radius: 5px;
 }
-.form-wrap form h1
-{
-    font-family: 'Acme', sans-serif;
-    font-variant: small-caps;
-    font-size: 45px;
-    text-align: center;
-    margin-bottom: 15px;
+
+.btn {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  background: #534b45;
+  color: #fff;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.8s;
 }
-.form-wrap form h1 span
-{
-    font-variant: small-caps;
-    color: #5f24f5;
+
+.btn:hover {
+  transform: scale(0.96);
 }
-.form-wrap form .single-input input
-{
+
+.signup-form a {
+  text-decoration: none;
+  color: #000;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 10px;
+  transition: 0.8s;
+  display: block;
+}
+
+.signup-form a:hover {
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+/* Set styles for devices with a max width of 768px */
+@media (max-width: 768px) {
+  .signup-form {
     width: 100%;
-    padding: 14px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.3521);
-    outline: none;
-    background: transparent;
-    margin-bottom: 10px;
-    font-size: 15px;
-    font-family: 'Roboto', sans-serif;
-}
-.form-wrap form .submit-button
-{
-    text-align: center;
-}
-.form-wrap form .submit-button button.button
-{
-    padding: 13px 30px;
-    background-color: #f52439;
-    outline: none;
-    border: none;
-    color: #fff;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    cursor: pointer;
-}
-.form-wrap form .account-have
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    max-width: 400px;
+  }
+  body {
     font-size: 14px;
-    margin-top: 10px;
-}
-.form-wrap form .account-have a
-{
-    color: rgb(34, 34, 34);
-    text-decoration: none;
-}
-@media screen and (min-width: 600px) {
-    .column {
-      width: 50%;
-    }
   }
-  
-  @media screen and (min-width: 900px) {
-    .column {
-      width: 33.3%;
-    }
+  .btn {
+    margin-top: 40px;
   }
+}
