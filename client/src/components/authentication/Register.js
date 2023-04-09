@@ -6,44 +6,25 @@ function Register() {
     
 
     return(
+      
         <div>
-<div>
-  
-  {/* custome css  */}
-  <link rel="stylesheet" href="./style.css" />
-  <title>Registration</title>
-  <div className="main-parent">
-    <div className="form-wrap">
-      <form action>
-        <h1><span>betareeqak</span></h1>
-        <div className="single-input">
-          <input id="fname" type="text" placeholder="First name" required />
-        </div>
-        <div className="single-input">
-          <input id="lname" type="text" placeholder="Last name" required />
-        </div>
-        <div className="single-input">
-          <input id="email" type="email" placeholder="Email Address" required />
-        </div>
-        <div className="single-input">
-          <input id="pass" type="password" placeholder="Password" required />
-        </div>
-        <div className="single-input">
-          <input id="cpass" type="password" placeholder="Confirm Password" required />
-        </div>
-        <div className="submit-button">
-          <button className="button">Submit</button>
-        </div>
-        <div className="account-have">
-          <a href>Forget Password</a>
-          <a href>Have an account please Login</a>
-        </div>
-      </form>
-    </div>
-  </div>
+<div className="signup-form">
+  <div className='image'></div>
+  <h1 className='title' >BETAREEQAK</h1>
+
+  <form action="#" method="post">
+    <input type="text" placeholder=" User Name" className="txt" name="UserName" />
+    <input type="email" placeholder=" Email" className="txt" name="Email" />
+    <input type="password" placeholder=" Password" className="txt" name="Password" />
+    <input type="password" placeholder=" Confirm Password" className="txt" name="Cpass" />
+    <input type="submit" defaultValue="Create a Account" className="btn" name="btn-save" />
+    <a href> Already Hava a Account</a>
+  </form>
 </div>
 
+
         </div>
+        
     )
 }
 export default Register;
