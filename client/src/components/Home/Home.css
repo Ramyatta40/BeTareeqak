@@ -235,13 +235,13 @@ html, body {
     text-align: center;
     background-color: hsla(230,40%,50%,1);
     }
-  body:before {
+  /* body:before {
     content: '';
     display: inline-block;
     vertical-align: middle;
     font-size: 0;
     height: 0%;
-    }
+    } */
 
 h1 {
   display: inline-block;

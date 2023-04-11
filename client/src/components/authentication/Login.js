@@ -32,21 +32,20 @@ function Login() {
 // user state declaration -------------------------------------------------------------------
 
   // onClick 
+  const navigate = useNavigate();
   const signIn = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
+        //window.location.href = '/Map';
+        navigate('/Map');
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
       });
 
-      if (authUser) {
-        window.location.href = '/Map';
-      } else {
-        
-      }
+     
       
   
     };
