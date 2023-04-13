@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About";
 import Map from "./components/Map/Map";
