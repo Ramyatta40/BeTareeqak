@@ -1,277 +1,182 @@
-.Home {
-  height: 100vh;
-}
+*{
 
-
-
-.bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 500%;
-  object-fit: cover;
-  object-position: center;
-  z-index: -1;
-}
-
-.row {
-  height: 100%;
-}
-
-
-
-
-.btn {
-  padding: 10px 20px;
-  font-size: 1.5rem;
-  background-color: #008CBA;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10%;
-
-}
-
-
-
-.text-white:hover {
-  border: 2px solid red;
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/*
-.buttonhome {
-  --border-radius: 15px;
-  --border-width: 4px;
-  appearance: none;
-  position: relative;
-  padding: 1em 2em;
-  border: 0;
-  background-color: #212121;
-  font-family: "Roboto", Arial, "Segoe UI", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  color: #fff;
-  z-index: 2;
- }
- 
- .buttonhome::after {
-  --m-i: linear-gradient(#000, #000);
-  --m-o: content-box, padding-box;
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  padding: var(--border-width);
-  border-radius: var(--border-radius);
-  background-image: conic-gradient(
-     #488cfb,
-     #29dbbc,
-     #ddf505,
-     #ff9f0e,
-     #e440bb,
-     #655adc,
-     #488cfb
-   );
-  -webkit-mask-image: var(--m-i), var(--m-i);
-  mask-image: var(--m-i), var(--m-i);
-  -webkit-mask-origin: var(--m-o);
-  mask-origin: var(--m-o);
-  -webkit-mask-clip: var(--m-o);
-  mask-composite: exclude;
-  -webkit-mask-composite: destination-out;
-  filter: hue-rotate(0);
-  animation: rotate-hue linear 500ms infinite;
-  animation-play-state: paused;
- }
- 
- .buttonhome:hover::after {
-  animation-play-state: running;
- }
- 
- @keyframes rotate-hue {
-  to {
-   filter: hue-rotate(1turn);
-  }
- }
- 
- .buttonhome,
- .buttonhome::after {
-  box-sizing: border-box;
- }
- 
- .buttonhome:active {
-  --border-width: 5px;
- }
-*/
-
-.buttonhome,
-.buttonhome::after {
- padding: 16px 20px;
- font-size: 18px;
- background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
- border: 0;
- color: #fff;
- letter-spacing: 3px;
- line-height: 1;
- box-shadow: 6px 0px 0px #00e6f6;
- outline: transparent;
- position: relative;
-}
-
-.buttonhome::after {
- --slice-0: inset(50% 50% 50% 50%);
- --slice-1: inset(80% -6px 0 0);
- --slice-2: inset(50% -6px 30% 0);
- --slice-3: inset(10% -6px 85% 0);
- --slice-4: inset(40% -6px 43% 0);
- --slice-5: inset(80% -6px 5% 0);
- content: "HOVER ME";
- display: block;
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
- background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, #ff013c 5%);
- text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
- clip-path: var(--slice-0);
-}
-
-.buttonhome:hover::after {
- animation: 1s glitch;
- animation-timing-function: steps(2, end);
-}
-
-@keyframes glitch {
- 0% {
-  clip-path: var(--slice-1);
-  transform: translate(-20px, -10px);
- }
-
- 10% {
-  clip-path: var(--slice-3);
-  transform: translate(10px, 10px);
- }
-
- 20% {
-  clip-path: var(--slice-1);
-  transform: translate(-10px, 10px);
- }
-
- 30% {
-  clip-path: var(--slice-3);
-  transform: translate(0px, 5px);
- }
-
- 40% {
-  clip-path: var(--slice-2);
-  transform: translate(-5px, 0px);
- }
-
- 50% {
-  clip-path: var(--slice-3);
-  transform: translate(5px, 0px);
- }
-
- 60% {
-  clip-path: var(--slice-4);
-  transform: translate(5px, 10px);
- }
-
- 70% {
-  clip-path: var(--slice-2);
-  transform: translate(-10px, 10px);
- }
-
- 80% {
-  clip-path: var(--slice-5);
-  transform: translate(20px, -10px);
- }
-
- 90% {
-  clip-path: var(--slice-1);
-  transform: translate(-10px, 0px);
- }
-
- 100% {
-  clip-path: var(--slice-1);
-  transform: translate(0);
- }
-}
-
-
-
-
-@import url(https://fonts.googleapis.com/css?family=Righteous);
-
-*, *:before, *:after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  position: relative;
+  font-family: 'poppins',sans-serif;
   }
-
-html, body {
-  height: 100%;
-  }
-  body {
-    text-align: center;
-    background-color: hsla(230,40%,50%,1);
-    }
-  /* body:before {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 0;
-    height: 0%;
-    } */
-
-h1 {
-  display: inline-block;
-  color: white;
-  font-family: 'Righteous', serif;
-  font-size: 12em; 
-  text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
-  }
-  h1:after {
-    content: attr(data-shadow);
-    position: absolute;
-    top: .06em; left: .06em;
-    z-index: -1;
-    text-shadow: none;
-    background-image:
-      linear-gradient(
-        45deg,
-        transparent 45%,
-        hsla(48,20%,90%,1) 45%,
-        hsla(48,20%,90%,1) 55%,
-        transparent 0
-        );
-    background-size: .05em .05em;
-    -webkit-background-clp: text;
-    -webkit-text-fill-color: transparent;
   
-    animation: shad-anim 15s linear infinite;
-    }
-
-@keyframes shad-anim {
-  0% {background-position: 0 0}
-  0% {background-position: 100% -100%}
+  
+  
+  .home_disgin{
+  
+  width: 100%;
+  height: 100vh;
+  background: url(https://i.pinimg.com/originals/90/4b/dd/904bdd9a4687202c367935d040777be0.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 0 8%;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*https://cdn1.photostockeditor.com/c/2212/person-woman-standing-beside-neon-light-human-human-image.jpg*/
+  /*https://i.pinimg.com/originals/90/4b/dd/904bdd9a4687202c367935d040777be0.jpg*/
+  /*https://wallup.net/wp-content/uploads/2014/11/abstract-galaxy-artwork.jpg*/
+  }
+  
+  .home_nav{
+  
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px 0 ;
+  
+  
+  }
+  
+  .home_logo{
+  cursor: pointer;
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+  
+  
+  }
+  
+  .home_ul{
+  flex: 1;
+  text-align: right;
+  padding-right: 30px;
+  
+  
+  }
+  
+  .home_ul li{
+  
+  display: inline-block;
+  list-style: none;
+  margin: 10px 30px;
+  
+  
+  }
+  
+  .home_ul li a{
+  
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  
+  }
+  .home_ul li a::after {
+  
+    content: '';
+  width: 0;
+  height: 3px;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translate(-50%);
+  background: #fff;
+  transition: width 0.3s;
+  
+  }
+  
+  .home_ul li a:hover::after{
+  
+  width: 50%;
+  
+  
+  }
+  
+  .home_text{
+  
+  color: #fff;
+  position: absolute;
+  bottom: 8%;
+  
+  
+  
+  }
+  .home_text p{
+  font-size: 50px;
+  font-weight: 600;
+  
+  }
+  
+  .home_text h1{
+  
+    font-size: 190px;
+  line-height: 160px;
+  margin-left: -10px;
+  color: transparent;
+  -webkit-text-stroke: 1px #fff;
+  background:url(https://mobileimages.lowes.com/productimages/6ddec5c5-00a2-4d5c-bd9e-5191ea9c3c17/47423112.jpg?size=xl);
+  
+  -webkit-background-clip: text;
+  background-position: 0 0;
+  animation: back 20s linear infinite;
+  
+  
+  
+  }
+  @keyframes back{
+  100%{
+    background-position: 2000px 0;
+  
+  }
+  
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  .home_button {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.7em 2em;
+    border: 3px solid #FF0072;
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+    color: #FF0072;
+    text-decoration: none;
+    transition: 0.3s ease all;
+    z-index: 1;
+  }
+  
+  .home_button:before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: '';
+    background-color: #FF0072;
+    z-index: -1;
+  }
+  
+  .home_button:hover, button:focus {
+    color: white;
+  }
+  
+  .home_button:hover:before, button:focus:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+  }
+  
+  .home_button:active {
+    transform: scale(0.9);
   }
