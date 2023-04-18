@@ -197,9 +197,9 @@ const App = () => {
             <Route
               path="/Map"
               element={
-                //<ProtectedRoute>
+                <ProtectedRoute>
                   <Map />
-                //</ProtectedRoute>
+                </ProtectedRoute>
               }
             />
 

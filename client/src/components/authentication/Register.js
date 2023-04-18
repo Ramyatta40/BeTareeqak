@@ -12,7 +12,8 @@ function Register() {
 const navigate = useNavigate();
 
 
-    const createUser = UserAuth();
+    const {createUser} = UserAuth();
+    const {logout} = UserAuth();
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -27,6 +28,16 @@ catch(e){
 }
 
 }
+const signOutHandle = () => {
+try {
+  logout();
+  console.log("loged out succesfully");
+} catch (error) {
+  console.log(error.message);
+}
+
+
+};
 
 
     return(
@@ -42,8 +53,10 @@ catch(e){
     <input type="password" placeholder=" Password" className="txt" name="Password" onChange={(e) => {setPassword(e.target.value)}} />
     <input type="password" placeholder=" Confirm Password" className="txt" name="Cpass" />
     <input type="submit" defaultValue="Create a Account" className="btn" name="btn-save" />
-    <a > Already Hava a Account</a>
+    <a href='/Login'> Already Hava a Account</a>
+    
   </form>
+
 </div>
 
 

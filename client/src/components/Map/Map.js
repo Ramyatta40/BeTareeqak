@@ -98,8 +98,7 @@ function clearRoute() {
   originRef.current.value = ''
   destiantionRef.current.value = ''
 }
-//conditional rendering ----------------------------------------------------
-//if (authUser){
+
   return (
     <Flex className="A2"
       position='absolute'
@@ -180,11 +179,7 @@ function clearRoute() {
       </Box>
     </Flex>
         )
-//}
-// else {
-//   window.location.href = '/Login';
-// }
-//conditional rendering ----------------------------------------------------
+
     }
 
 export default Map;
