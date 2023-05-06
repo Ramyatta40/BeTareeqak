@@ -10,19 +10,23 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const {user} = UserAuth();
 
   // On Submit handling
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await signIn(email, password);
-      navigate("/Map");
+      await signIn(email, password)
+      .then( x => {navigate("/");})
+      ;
     } catch (error) {
       setError(error.message);
       console.log(error.message);
     }
+    
   };
+
 
   return (
     <div className="bb">

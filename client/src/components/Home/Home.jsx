@@ -1,7 +1,16 @@
 import React from 'react';
 import './Home.css';
+import { UserAuth } from '../authentication/AuthContext';
 
 function Home() {
+
+
+
+  const {logout} = UserAuth();
+  const handleClick = () => {
+logout();
+
+  };
   return (
  
 <div className="home_disgin">
@@ -21,7 +30,7 @@ function Home() {
 <div className="home_text">
 <p>Welcome to </p>
 <h1>BeTareeqak</h1>
-<button className="home_button">Start the journey now</button>
+<button onClick={handleClick} className="home_button">Start the journey now</button>
 
 </div>
 

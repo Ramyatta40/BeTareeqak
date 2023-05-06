@@ -35,24 +35,10 @@ const center = { lat:31.963158 , lng:35.930359 }
 
 function Map(){
   // user state declaration -------------------------------------------------------------------
-  const [authUser, setAuthUser] = useState(null);
 
-  useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
-  
-      if (user) {
-        setAuthUser(user);
-        
-      } else {
-        setAuthUser(null);
-        
-      }
-  
-      return () => {
-        listen();
-      };
-    });
-  }, []);
+
+
+ 
 // user state declaration -------------------------------------------------------------------
 
   const { isLoaded } = useJsApiLoader({

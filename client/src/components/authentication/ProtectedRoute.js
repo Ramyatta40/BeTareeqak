@@ -7,7 +7,7 @@ import { UserAuth } from './AuthContext';
 const ProtectedRoute = ({children}) => {
 
  // user state declaration -------------------------------------------------------------------
-const {user } = UserAuth();
+const {user} = UserAuth();
 
 
 // user state declaration -------------------------------------------------------------------
@@ -17,12 +17,12 @@ const {user } = UserAuth();
 
 
 
-    if (user){
-  return (children) ;
+    if (!user){
+      return <Navigate to = '/Login'/>;
 }
 else{
-return <Navigate to = '/Login'/>;
 
+return (children) ;
 }
 }
 
