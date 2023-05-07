@@ -31,7 +31,7 @@ const center = { lat:31.963158 , lng:35.930359 }
 
 
 
-
+const libraries = ['places'];
 
 function Map(){
   // user state declaration -------------------------------------------------------------------
@@ -43,7 +43,7 @@ function Map(){
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyDkvayJNjcKUagFyd9BU6PY-ewXwcLlu68",
-    libraries: ['places'],
+    libraries,
   })
 
   const [map, setMap] = useState(/** @type google.maps.Map */ (null))
