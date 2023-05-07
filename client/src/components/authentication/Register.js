@@ -48,7 +48,7 @@ try {
   <h1 className='title' >BETAREEQAK</h1>
 
   <form action="#" onSubmit={handleSubmit}>
-    <input type="text" placeholder=" User Name" className="txt" name="UserName" onChange={(e) => {setUserName(e.target.value)}} />
+    <input type="text" placeholder=" Full Name" className="txt" name="UserName" onChange={(e) => {setUserName(e.target.value)}} />
     <input type="email" placeholder=" Email" className="txt" name="Email"  onChange={(e) => {setEmail(e.target.value)}}/>
     <input type="password" placeholder=" Password" className="txt" name="Password" onChange={(e) => {setPassword(e.target.value)}} />
     <input type="password" placeholder=" Confirm Password" className="txt" name="Cpass" />
