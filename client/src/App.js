@@ -176,7 +176,7 @@ const App = () => {
         setAuthUser(null);
       }
 
-      
+
     });
     return () => {
       listen();
@@ -203,7 +203,7 @@ const App = () => {
               }
             />
 
-            <Route path="/Rode" element={<Rode />} />
+            <Route path="/Rode" element={<ProtectedRoute><Rode /></ProtectedRoute>} />
             <Route path="/about" element={<About />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />

@@ -1,5 +1,5 @@
-import React,{useEffect} from 'react';
-import {onAuthStateChanged } from 'firebase/auth';
+import React, { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../authentication/firebaseAuth';
 import './Map.css';
 
@@ -25,32 +25,36 @@ import {
   DirectionsRenderer,
 } from '@react-google-maps/api'
 import { useRef, useState } from 'react'
+import { UserAuth } from '../authentication/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
-const center = { lat:31.963158 , lng:35.930359 }
+const center = { lat: 31.963158, lng: 35.930359 }
 
 
 
 const libraries = ['places'];
 
-function Map(){
+function Map() {
   // user state declaration -------------------------------------------------------------------
+  const navigate = useNavigate();
 
 
 
- 
-// user state declaration -------------------------------------------------------------------
-
+  // user state declaration -------------------------------------------------------------------
+  
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyDkvayJNjcKUagFyd9BU6PY-ewXwcLlu68",
     libraries,
   })
 
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null))
+  const [map, setMap] = useState(/** @type google.maps.Map */(null))
   const [directionsResponse, setDirectionsResponse] = useState(null)
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
-
+  const { setPickupAndDestination } = UserAuth();
+  const { getPickup, getDestination } = UserAuth();
+   const  [searchBtnVisibility,setSearchBtnVisibility] = useState('hidden') ;
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef()
   /** @type React.MutableRefObject<HTMLInputElement> */
@@ -75,15 +79,22 @@ function Map(){
     setDirectionsResponse(results)
     setDistance(results.routes[0].legs[0].distance.text)
     setDuration(results.routes[0].legs[0].duration.text)
-}
+    setPickupAndDestination(originRef.current.value, destiantionRef.current.value);
 
-function clearRoute() {
-  setDirectionsResponse(null)
-  setDistance('')
-  setDuration('')
-  originRef.current.value = ''
-  destiantionRef.current.value = ''
-}
+    console.log("Pick up location : = " + getPickup() + " and destination is : " + getDestination());
+setSearchBtnVisibility('visible');
+  }
+  function handleSearch() {
+    navigate("/Rode");
+  }
+
+  function clearRoute() {
+    setDirectionsResponse(null)
+    setDistance('')
+    setDuration('')
+    originRef.current.value = ''
+    destiantionRef.current.value = ''
+  }
 
   return (
     <Flex className="A2"
@@ -95,7 +106,7 @@ function clearRoute() {
     >
       <Box className="A3" position='absolute' left={0} top={0} h='100%' w='100%'>
         {/* Google Map Box */}
-        <GoogleMap 
+        <GoogleMap
           center={center}
           zoom={15}
           mapContainerStyle={{ width: '100%', height: '100%' }}
@@ -113,7 +124,7 @@ function clearRoute() {
           )}
         </GoogleMap>
       </Box>
-      <Box 
+      <Box
         p={4}
         borderRadius='lg'
         m={4}
@@ -137,10 +148,13 @@ function clearRoute() {
               />
             </Autocomplete>
           </Box>
-  
+
           <ButtonGroup>
             <Button className="A1" colorScheme='pink' type='submit' onClick={calculateRoute}>
               Calculate Route
+            </Button>
+            <Button visibility={searchBtnVisibility} className="A1" colorScheme='pink' type='submit' onClick={handleSearch}>
+              See Availible Trips 
             </Button>
             <IconButton
               aria-label='center back'
@@ -164,8 +178,8 @@ function clearRoute() {
         </HStack>
       </Box>
     </Flex>
-        )
+  )
 
-    }
+}
 
 export default Map;

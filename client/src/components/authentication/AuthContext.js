@@ -6,12 +6,35 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "./firebaseAuth";
-
+const PICKUP_LOC_STORAGE_KEY = "pickupLoc";
+const DESTINATION_LOC_STORAGE_KEY = "destinationLoc";
 const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    
+
   const [user, setUser] = useState({});
+  const [pickupLoc, setPickupLoc] = useState(localStorage.getItem(PICKUP_LOC_STORAGE_KEY) || 'write pick up location');
+  const [destinationLoc, setDestinationLoc] = useState(localStorage.getItem(DESTINATION_LOC_STORAGE_KEY) || 'write destination location');
+
+  useEffect(() => {
+    localStorage.setItem(PICKUP_LOC_STORAGE_KEY, pickupLoc);
+  }, [pickupLoc]);
+
+  useEffect(() => {
+    localStorage.setItem(DESTINATION_LOC_STORAGE_KEY, destinationLoc);
+  }, [destinationLoc]);
+  const setPickupAndDestination = (pickup, destination) => {
+    setPickupLoc(pickup);
+    setDestinationLoc(destination);
+
+  };
+  const getPickup = () => {
+    return pickupLoc;
+  };
+  const getDestination = () => {
+    return destinationLoc;
+  };
+
 
   // Create user function for Register ------------------------------
   const createUser = (email, password) => {
@@ -24,7 +47,7 @@ export const AuthContextProvider = ({ children }) => {
   //Log Out --------------------------------------------------------
   const logout = () => {
     return signOut(auth);
-    
+
   };
 
   useEffect(() => {
@@ -36,7 +59,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ createUser, user, logout, signIn }}>
+    <UserContext.Provider value={{ createUser, user, logout, signIn, setPickupAndDestination, getPickup, getDestination }}>
       {children}
     </UserContext.Provider>
   );
