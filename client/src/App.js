@@ -159,6 +159,8 @@ import Map from "./components/Map/Map";
 import Rode from "./components/Rode/Rode";
 import Login from "./components/authentication/Login";
 import Register from "./components/authentication/Register";
+import Profile from "./components/Profile/Profile";
+
 import { auth } from "./components/authentication/firebaseAuth";
 import { onAuthStateChanged } from "firebase/auth";
 import ProtectedRoute from "./components/authentication/ProtectedRoute";
@@ -206,6 +208,8 @@ const App = () => {
             <Route path="/Rode" element={<ProtectedRoute><Rode /></ProtectedRoute>} />
             <Route path="/about" element={<About />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/Profile" element={<Profile />} />
+
             <Route path="/Register" element={<Register />} />
           </Routes>{" "}
         </AuthContextProvider>

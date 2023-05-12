@@ -1,0 +1,53 @@
+
+
+
+.profile_a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .profile_a img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px;
+  }
+  .profile_a img::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+  .profile_a input[type="file"] {
+    display: none;
+  }
+  
+
+.username_Profile{
+
+  
+    background: #ebeb4e;
+    }
+    
+    .email_Profile{
+    
+     
+        background: #ebeb4e;
+    
+    }
+
+    input[type="file"] {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ebeb4e;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+

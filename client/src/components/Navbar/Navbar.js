@@ -25,6 +25,9 @@ const Navbar = () => {
             <Nav.Link to="/Rode" as={NavLink}>
               Rode
             </Nav.Link>
+            <Nav.Link to="/Profile" as={NavLink}>
+            Profile
+            </Nav.Link>
             <Nav.Link to="/about" as={NavLink}>
               Contact us
             </Nav.Link>
