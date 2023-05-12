@@ -5,47 +5,69 @@ import { db } from "../authentication/firebaseAuth";
 import { collection, getDocs, addDoc, doc, updateDoc } from "firebase/firestore"
 
 function TripRow(props) {
-    const {user} = UserAuth();
-        var currentUserEmail = user.email;
-      
-    
-    
-    if (currentUserEmail !=null) {
-      console.log(currentUserEmail);
-    } else {
-      console.log("currentUserEmail is null")
+    var passengersArray = [];
+
+    const { user } = UserAuth();
+    var currentUserEmail = user.email;
+    const tripDoc = doc(db, "Trips", props.tripId);
+    passengersArray = props.passengers;
+    const [bookBtnVisibility, setBookBtnVisibility] = useState("visible");
+    const [cancelBtnVisibility, setCancelBtnVisibility] = useState("hidden");
+
+
+
+
+    function handleCancelButton() {
+        if (passengersArray.includes(currentUserEmail)) {
+
+            try {
+                passengersArray.splice(passengersArray.indexOf(currentUserEmail), 1);
+                const newFields = { passengers: passengersArray };
+                updateDoc(tripDoc, newFields);
+
+            } catch (error) {
+                console.log(error.message);
+            }
+            setBookBtnVisibility("visible");
+            setCancelBtnVisibility("hidden");
+        } else {
+            alert("you arn't in this trip")
+        }
+    }
+
+    function handleBookButton() {
+        console.log(props.tripId);
+
+        if (passengersArray.includes(currentUserEmail)) {
+            alert("already booked")
+        }
+        else {
+            if (passengersArray.length < 3) {
+                passengersArray.push(currentUserEmail);
+                const newFields = { passengers: passengersArray };
+                updateDoc(tripDoc, newFields);
+            } else {
+                alert("the trip is full ");
+            }
+            setBookBtnVisibility("hidden");
+            setCancelBtnVisibility("visible");
+        }
+
     }
 
 
-
-function handleBookButton() {
-    console.log(props.tripId);
-const tripDoc = doc(db, "Trips",props.tripId);
-var passengersArray = [];
-passengersArray =  props.passengers;
-
-if (passengersArray.length < 3) {
-    passengersArray.push(currentUserEmail);
-    const newFields = {passengers: passengersArray};
-updateDoc(tripDoc,newFields);
-} else {
-    alert("the trip is full ");
-}
-
-
-}
-
-
     return (
-        
-<tr>
+
+        <tr>
             <th>{props.pickup}</th>
             <th>{props.destination}</th>
             <th>{props.time}</th>
-            <th>{props.passengers}</th>
-            <th><button type='submit' onClick={handleBookButton}  >book this trip</button></th>
-          </tr>
-        
+            <th>{passengersArray}</th>
+            <th><button  visibility={bookBtnVisibility} onClick={handleBookButton}  >{"book trip"}</button>
+                <button  visibility={cancelBtnVisibility} onClick={handleCancelButton}  >{"cancel trip"}</button>
+            </th>
+        </tr>
+
 
 
     )
