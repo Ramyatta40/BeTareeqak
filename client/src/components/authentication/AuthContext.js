@@ -13,8 +13,8 @@ const UserContext = createContext();
 export const AuthContextProvider = ({ children }) => {
 
   const [user, setUser] = useState({});
-  const [pickupLoc, setPickupLoc] = useState(localStorage.getItem(PICKUP_LOC_STORAGE_KEY) || 'write pick up location');
-  const [destinationLoc, setDestinationLoc] = useState(localStorage.getItem(DESTINATION_LOC_STORAGE_KEY) || 'write destination location');
+  const [pickupLoc, setPickupLoc] = useState(localStorage.getItem(PICKUP_LOC_STORAGE_KEY) || '');
+  const [destinationLoc, setDestinationLoc] = useState(localStorage.getItem(DESTINATION_LOC_STORAGE_KEY) || '');
 
   useEffect(() => {
     localStorage.setItem(PICKUP_LOC_STORAGE_KEY, pickupLoc);

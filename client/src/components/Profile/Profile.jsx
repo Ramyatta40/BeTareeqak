@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./Profile.css";
+import { UserAuth } from "../authentication/AuthContext";
+import { useNavigate } from "react-router-dom";
+
+
 
 function Profile() {
+  const {logout} = UserAuth();
   const [selectedImage, setSelectedImage] = useState(null);
+  const navigate = useNavigate();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -17,11 +23,22 @@ function Profile() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/")
+    } catch (error) {
+      console.log(error.message)
+    }
+    
+    
+      };
+
   return (
     <div className="profile_a">
       <h1 className="username_Profile">username</h1>
       <p className="email_Profile">email</p>
-      <label htmlFor="imageUpload" className="button">
+      <label htmlFor="imageUpload" className="button profile-label">
         Select Image
       </label>
       <input
@@ -35,6 +52,7 @@ function Profile() {
           <img src={selectedImage} alt="Selected" />
         </div>
       )}
+      <button onClick={handleLogout}> Log out</button>
     </div>
   );
 }

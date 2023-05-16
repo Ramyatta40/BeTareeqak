@@ -11,18 +11,10 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const {user} = UserAuth();
-  try {
-    var currentUserEmail = user.email;
-  } catch (error) {
-    console.log(error.message)
-  }
 
 
-if (currentUserEmail !=null) {
-  console.log(currentUserEmail);
-} else {
-  console.log("currentUserEmail is null")
-}
+
+
 
   // On Submit handling
   const handleSubmit = async (e) => {

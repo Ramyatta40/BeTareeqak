@@ -36,9 +36,24 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
   }
+/* Select Styling*/
+.select-container{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-top: 1%;
+}
+.select-container label {
+  margin-right: 1%;
+  margin-left: 1%;
 
-  
+}
+
+  /* the below code is for modal styling*/
   body.active-modal {
     overflow-y: hidden;
 }

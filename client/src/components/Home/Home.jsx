@@ -1,14 +1,15 @@
 import React from 'react';
 import './Home.css';
 import { UserAuth } from '../authentication/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
-
+const navigate = useNavigate();
 
   const {logout} = UserAuth();
   const handleClick = () => {
-logout();
+navigate("/Rode")
 
   };
   return (

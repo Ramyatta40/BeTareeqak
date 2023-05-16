@@ -31,7 +31,7 @@ function TripRow(props) {
             setBookBtnVisibility("visible");
             setCancelBtnVisibility("hidden");
         } else {
-            alert("you arn't in this trip")
+            alert("you aren't in this trip")
         }
     }
 
