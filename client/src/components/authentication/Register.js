@@ -37,7 +37,7 @@ const [error, setError] = useState("");
   return (
    
     
-    <div>
+    <div className="ss">
       <div className="signup-form">
         <div className="image"></div>
         <h1 className="title">signup</h1>

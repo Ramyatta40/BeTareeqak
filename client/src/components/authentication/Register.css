@@ -1,6 +1,32 @@
 /* Set default styles for all devices */
 
-   
+root {
+  --primary-color: #90e0ef;
+  --secondary-color: #00b4d8;
+  --tertiary-color: #0077b6;
+  --gray-color: #b0b0b0;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+}
+
+
+.ss {
+    background-color: var(--primary-color);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 .signup-form {
   width: 300px;
   padding: 20px;
