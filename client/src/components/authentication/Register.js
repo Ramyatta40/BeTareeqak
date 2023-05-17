@@ -35,6 +35,8 @@ const [error, setError] = useState("");
 
 
   return (
+   
+    
     <div>
       <div className="signup-form">
         <div className="image"></div>
@@ -54,7 +56,7 @@ const [error, setError] = useState("");
             
           </div>
 
-          <div>
+          
             <input
               type="email"
               placeholder=" Email"
@@ -64,7 +66,7 @@ const [error, setError] = useState("");
                 setEmail(e.target.value);
               }}
             />
-          </div>
+
 
           <div>
             <input
@@ -115,6 +117,8 @@ const [error, setError] = useState("");
         </form>
       </div>
     </div>
+    
+
   );
 }
 export default Register;
