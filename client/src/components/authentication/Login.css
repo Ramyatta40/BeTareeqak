@@ -134,3 +134,45 @@
     text-align: center;
     text-transform: uppercase;
 }
+/* the below code is for modal styling*/
+
+
+
+.modalForm, .overlayForm {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    
+}
+
+.overlayForm {
+    background: rgba(49,49,49,0.8);
+}
+.modalForm-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background-color: rgb(22, 223, 233);
+    border-radius: 10px;
+    padding: 45px;
+    width: 375px;
+    max-width: 95%;
+    box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 10%);
+}
+
+
+.close-modal {
+    position: relative;
+    top: 0px;
+    bottom: 10px;
+    left: 40px;
+    margin: 0%;
+    padding: 5px 7px;
+}
+

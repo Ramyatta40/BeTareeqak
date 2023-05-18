@@ -11,7 +11,7 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const {user} = UserAuth();
-
+  const [modal, setModal] = useState(false)
 
 
 
@@ -28,9 +28,12 @@ function Login() {
       setError(error.message);
       console.log(error.message);
     }
+
     
   };
-
+const toggleModal = () => {
+    setModal(!modal);
+  };
 
   return (
     <div className="bb">
@@ -57,7 +60,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <a href="#" className="forgot">
+          <a href="#" onClick={toggleModal} className="forgot">
             Forgot Password?
           </a>
           <input type="submit" value="Login" />
@@ -66,6 +69,24 @@ function Login() {
           Sign Up
         </a>
       </div>
+      {modal && (
+        <div className="modalForm">
+          <div onClick={toggleModal} className="overlayForm"></div>
+          <div className="modalForm-content">
+            <h2>Enter the email to change the password</h2>
+            <form onSubmit={handleSubmit}>
+              <label>Email</label>
+              <br/>
+            <input type="email" placeholder=" Email" />
+            <button className="close-modal" onClick={toggleModal}>
+              CLOSE
+            </button>
+            <button className="send modal"></button>
+            </form>
+            
+          </div>
+        </div>
+      )}
     </div>
   );
 }

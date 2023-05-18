@@ -29,7 +29,7 @@ root {
 }
 .signup-form {
   width: 300px;
-  padding: 20px;
+  padding: 30px;
   text-align: center;
   background: white;
   position: fixed;
@@ -39,11 +39,14 @@ root {
   overflow: hidden;
   border-radius: 5px;
 }
-.signup-form label{
+.signup-form form label{
   display: block;
-    font-size: 12px;
-    margin-bottom: 18px;
+  position: relative;
+  margin: 0%;
+  width: 100%;
 }
+
+
 .title {
   color:black;
   font-family: Arial, Helvetica, sans-serif;
@@ -54,12 +57,18 @@ root {
   display: block;
   width: 100%;
   padding-left: 10px;
-  height: 44px;
+  height: 30px;
+  bottom: 1100px;
   box-sizing: border-box;
   outline: none;
   border: none;
   font-family: 'Ubuntu', sans-serif;
   font-size: 14px;
+}
+.signup-form form label{
+right: 10px;
+color: #b407fe;
+right: 18px;
 }
 
 .txt {

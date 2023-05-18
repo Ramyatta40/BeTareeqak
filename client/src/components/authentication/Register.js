@@ -44,7 +44,7 @@ const [error, setError] = useState("");
 
         <form action="#" onSubmit={handleRegisterSubmit}>
           <div>
-        
+           <label>user name</label>
             <input
               type="text"
               placeholder=" Full Name"
@@ -57,7 +57,7 @@ const [error, setError] = useState("");
             
           </div>
 
-          
+          <label>your email</label>
             <input
               type="email"
               placeholder=" Email"
@@ -70,7 +70,7 @@ const [error, setError] = useState("");
 
 
           <div>
-            
+            <label className="pass" >password</label>
             <input
               type="password"
               placeholder=" Password"
@@ -83,7 +83,7 @@ const [error, setError] = useState("");
           </div>
 
           <div>
-            
+            <label>Confirm password</label>
             <input
               type="password"
               placeholder=" Confirm Password"
@@ -96,7 +96,7 @@ const [error, setError] = useState("");
           </div>
 
           <div>
-            
+          <label>phone</label>
             <input
               type="text"
               placeholder=" phone number"
