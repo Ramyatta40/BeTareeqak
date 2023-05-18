@@ -60,7 +60,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <a href="#" onClick={()=> {toggleModal()}} className="forgot">
+          <a href="#"  className="forgot">
             Forgot Password?
           </a>
           {warning && (<p className="text-danger">wronge Email or password</p>)}
