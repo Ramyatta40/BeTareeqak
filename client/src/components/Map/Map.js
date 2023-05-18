@@ -81,7 +81,7 @@ function Map() {
     setDuration(results.routes[0].legs[0].duration.text)
     setPickupAndDestination(originRef.current.value, destiantionRef.current.value);
 
-    console.log("Pick up location : = " + getPickup() + " and destination is : " + getDestination());
+    console.log("Pick up location : = " + originRef.current.value + " and destination is : " + destiantionRef.current.value);
 setSearchBtnVisibility('visible');
   }
   function handleSearch() {
@@ -154,7 +154,7 @@ setSearchBtnVisibility('visible');
               Calculate Route
             </Button>
             <Button visibility={searchBtnVisibility} className="A1" colorScheme='pink' type='submit' onClick={handleSearch}>
-              See Availible Trips 
+              add this as a new trip 
             </Button>
             <IconButton
               aria-label='center back'

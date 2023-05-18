@@ -13,7 +13,7 @@ function TripRow(props) {
     passengersArray = props.passengers;
     const [bookBtnVisibility, setBookBtnVisibility] = useState(!passengersArray.includes(currentUserEmail));
     const [cancelBtnVisibility, setCancelBtnVisibility] = useState(passengersArray.includes(currentUserEmail));
-    
+    const [time,setTime] = useState('');
 
 
 
@@ -67,13 +67,13 @@ function TripRow(props) {
         <tr>
             <th>{props.pickup}</th>
             <th>{props.destination}</th>
-            <th>{props.time}</th>
+            <th>{props.time.split('T').join(' ')}</th>
             <th>{passengersArray.join(' ')}</th>
             <th>
                 {bookBtnVisibility && (<button   onClick={handleBookButton}  >{"book trip"}</button>)}
                 
                 {cancelBtnVisibility && (<button   onClick={handleCancelButton}  >{"cancel trip"}</button>)}
-                
+                <button >Calculate Route</button>
 
             </th>
         </tr>
