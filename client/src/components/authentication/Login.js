@@ -73,16 +73,16 @@ const toggleModal = () => {
         <div className="modalForm">
           <div onClick={toggleModal} className="overlayForm"></div>
           <div className="modalForm-content">
-            <h2>Enter the email to change the password</h2>
+            <h5>Enter the email to change the password</h5>
             <form onSubmit={handleSubmit}>
-              <label>Email</label>
-              <br/>
-            <input type="email" placeholder=" Email" />
+            <label className="em">Email </label>&nbsp;
+            
+            <input type="Email" placeholder=" Email"  className="pp"/>
+            </form>
+            <br/>
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
             </button>
-            <button className="send modal"></button>
-            </form>
             
           </div>
         </div>
