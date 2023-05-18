@@ -11,11 +11,11 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const {user} = UserAuth();
+ 
+  const [warning,setWarning] = useState(false);
 
 
-
-
-
+ 
   // On Submit handling
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +24,11 @@ function Login() {
       await signIn(email, password)
       .then( x => {navigate("/");})
       ;
+      setWarning(false);
     } catch (error) {
       setError(error.message);
       console.log(error.message);
+      setWarning(true);
     }
     
   };
@@ -34,6 +36,7 @@ function Login() {
 
   return (
     <div className="bb">
+      
       <div className="box">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
@@ -57,9 +60,11 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <a href="#" className="forgot">
+          <a href="#" onClick={()=> {toggleModal()}} className="forgot">
             Forgot Password?
           </a>
+          {warning && (<p className="text-danger">wronge Email or password</p>)}
+          
           <input type="submit" value="Login" />
         </form>
         <a href="/Register" className="sign-up">
