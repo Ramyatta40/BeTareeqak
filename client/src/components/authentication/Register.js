@@ -10,9 +10,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
   const [userName, setUserName] = useState("");
-const [phone,setPhone] = useState(-1);
-const [] = useState(false);
-const [error, setError] = useState("");
+  const [phone, setPhone] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const { createUser } = UserAuth();
@@ -22,9 +21,33 @@ const [error, setError] = useState("");
     e.preventDefault();
     setError("");
 
+    if (!userName) {
+      setError("Full name is required");
+      return;
+    }
+
+    if (!emailIsValid(email)) {
+      setError("Invalid email format");
+      return;
+    }
+
+    if (!passwordIsValid(password)) {
+      setError("Password should be at least 6 characters");
+      return;
+    }
+
+    if (password !== confPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    if (!phoneNumberIsValid(phone)) {
+      setError("Invalid phone number. Please enter a valid phone number starting with '079', '078', or '077', followed by 7 additional digits.");
+      return;
+    }
+
     try {
       await createUser(email, password);
-
 
       navigate("/");
     } catch (e) {
@@ -33,10 +56,22 @@ const [error, setError] = useState("");
     }
   };
 
+  const emailIsValid = (email) => {
+    // Use regular expression for email format validation
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    return emailRegex.test(email);
+  };
+
+  const passwordIsValid = (password) => {
+    return password.length >= 6;
+  };
+
+  const phoneNumberIsValid = (phoneNumber) => {
+    const phoneNumberRegex = /^(079|078|077)\d{7}$/;
+    return phoneNumberRegex.test(phoneNumber);
+  };
 
   return (
-   
-    
     <div className="ss">
       <div className="signup-form">
         <div className="image"></div>
@@ -44,7 +79,6 @@ const [error, setError] = useState("");
 
         <form action="#" onSubmit={handleRegisterSubmit}>
           <div>
-        
             <input
               type="text"
               placeholder=" Full Name"
@@ -54,23 +88,19 @@ const [error, setError] = useState("");
                 setUserName(e.target.value);
               }}
             />
-            
           </div>
 
-          
-            <input
-              type="email"
-              placeholder=" Email"
-              className="txt"
-              name="Email"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-
+          <input
+            type="email"
+            placeholder=" Email"
+            className="txt"
+            name="Email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
 
           <div>
-            
             <input
               type="password"
               placeholder=" Password"
@@ -83,7 +113,6 @@ const [error, setError] = useState("");
           </div>
 
           <div>
-            
             <input
               type="password"
               placeholder=" Confirm Password"
@@ -96,7 +125,6 @@ const [error, setError] = useState("");
           </div>
 
           <div>
-            
             <input
               type="text"
               placeholder=" phone number"
@@ -109,6 +137,10 @@ const [error, setError] = useState("");
           </div>
 
           <div>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </div>
+
+          <div>
             <input
               type="submit"
               defaultValue="Create a Account"
@@ -117,12 +149,13 @@ const [error, setError] = useState("");
             />
           </div>
 
-          <a href="/Login"> Already Hava a Account</a>
+          <a href="/Login"> Already Have an Account</a>
         </form>
       </div>
     </div>
-    
-
   );
 }
 export default Register;
+
+
+
