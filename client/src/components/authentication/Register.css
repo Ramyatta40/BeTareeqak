@@ -29,7 +29,7 @@ root {
 }
 .signup-form {
   width: 300px;
-  padding: 30px;
+  padding: 15px;
   text-align: center;
   background: white;
   position: fixed;
@@ -42,6 +42,7 @@ root {
 .signup-form form label{
   display: block;
   position: relative;
+
   margin: 0%;
   width: 100%;
 }
@@ -53,17 +54,21 @@ root {
 }
 
 
-.signup-form input {
+.signup-form input:not([type="submit"]) {
   display: block;
   width: 100%;
   padding-left: 10px;
-  height: 30px;
-  bottom: 1100px;
+  height: 30%;
+  bottom: 110px;
   box-sizing: border-box;
   outline: none;
   border: none;
   font-family: 'Ubuntu', sans-serif;
   font-size: 14px;
+  border-bottom: 1px solid black;
+  margin-top: 10px;
+
+
 }
 .signup-form form label{
 color: black;

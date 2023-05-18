@@ -79,6 +79,7 @@ function Register() {
 
         <form action="#" onSubmit={handleRegisterSubmit}>
           <div>
+            <label>user name</label>
             <input
               type="text"
               placeholder=" Full Name"
@@ -89,6 +90,8 @@ function Register() {
               }}
             />
           </div>
+         
+          <label>Email</label>
 
           <input
             type="email"
@@ -101,6 +104,7 @@ function Register() {
           />
 
           <div>
+            <label>password</label>
             <input
               type="password"
               placeholder=" Password"
@@ -111,6 +115,7 @@ function Register() {
               }}
             />
           </div>
+          <label>confirm</label>
 
           <div>
             <input
@@ -125,6 +130,8 @@ function Register() {
           </div>
 
           <div>
+          <label>phone</label>
+
             <input
               type="text"
               placeholder=" phone number"

@@ -42,8 +42,8 @@ const toggleModal = () => {
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <div>
-            <i className="fa-solid fa-user"></i>
-            <input
+          <i className="fa-solid fa-user"></i>
+          <input
               type="email"
               placeholder="Enter email"
               value={email}
