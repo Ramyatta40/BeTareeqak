@@ -97,6 +97,7 @@ const { isLoaded } = useJsApiLoader({
             <th>Destination</th>
             <th>Time of beginning</th>
             <th>Passengers</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -175,7 +176,7 @@ const { isLoaded } = useJsApiLoader({
 </Autocomplete></HStack>
               <br />
               <button type="submit" value={"submit"}>
-                Add new Trip
+                Add new Station
               </button>
             </form>
           </div>

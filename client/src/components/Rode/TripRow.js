@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Rode.css';
 import { UserAuth } from '../authentication/AuthContext';
 import { db } from "../authentication/firebaseAuth";
@@ -11,9 +11,9 @@ function TripRow(props) {
     var currentUserEmail = user.email;
     const tripDoc = doc(db, "Trips", props.tripId);
     passengersArray = props.passengers;
-    const [bookBtnVisibility, setBookBtnVisibility] = useState("visible");
-    const [cancelBtnVisibility, setCancelBtnVisibility] = useState("hidden");
-
+    const [bookBtnVisibility, setBookBtnVisibility] = useState(!passengersArray.includes(currentUserEmail));
+    const [cancelBtnVisibility, setCancelBtnVisibility] = useState(passengersArray.includes(currentUserEmail));
+    
 
 
 
@@ -24,12 +24,12 @@ function TripRow(props) {
                 passengersArray.splice(passengersArray.indexOf(currentUserEmail), 1);
                 const newFields = { passengers: passengersArray };
                 updateDoc(tripDoc, newFields);
-
+                setBookBtnVisibility(true);
+                setCancelBtnVisibility(false);
             } catch (error) {
                 console.log(error.message);
             }
-            setBookBtnVisibility("visible");
-            setCancelBtnVisibility("hidden");
+           
         } else {
             alert("you aren't in this trip")
         }
@@ -42,6 +42,8 @@ function TripRow(props) {
             alert("already booked")
         }
         else {
+
+            try {
             if (passengersArray.length < 3) {
                 passengersArray.push(currentUserEmail);
                 const newFields = { passengers: passengersArray };
@@ -49,8 +51,12 @@ function TripRow(props) {
             } else {
                 alert("the trip is full ");
             }
-            setBookBtnVisibility("hidden");
-            setCancelBtnVisibility("visible");
+            setBookBtnVisibility(false);
+            setCancelBtnVisibility(true);
+        } catch (error) {
+            console.log(error.message);
+        }
+
         }
 
     }
@@ -62,9 +68,13 @@ function TripRow(props) {
             <th>{props.pickup}</th>
             <th>{props.destination}</th>
             <th>{props.time}</th>
-            <th>{passengersArray}</th>
-            <th><button  visibility={bookBtnVisibility} onClick={handleBookButton}  >{"book trip"}</button>
-                <button  visibility={cancelBtnVisibility} onClick={handleCancelButton}  >{"cancel trip"}</button>
+            <th>{passengersArray.join(' ')}</th>
+            <th>
+                {bookBtnVisibility && (<button   onClick={handleBookButton}  >{"book trip"}</button>)}
+                
+                {cancelBtnVisibility && (<button   onClick={handleCancelButton}  >{"cancel trip"}</button>)}
+                
+
             </th>
         </tr>
 
