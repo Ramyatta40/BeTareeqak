@@ -31,7 +31,7 @@ root {
   width: 300px;
   padding: 20px;
   text-align: center;
-  background: rgba(180, 118, 174, 0.7);
+  background: white;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -39,11 +39,16 @@ root {
   overflow: hidden;
   border-radius: 5px;
 }
-
+.signup-form label{
+  display: block;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
 .title {
-  color: rgba(230, 60, 219, 0.922);
+  color:black;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 
 .signup-form input {
   display: block;
@@ -70,11 +75,11 @@ root {
   border-radius: 40px;
   cursor: pointer;
   transition: 0.8s;
+  
 }
 
 .btn:hover {
   transform: scale(0.96);
-  
 }
 
 .signup-form a {
