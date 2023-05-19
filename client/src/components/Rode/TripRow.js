@@ -3,6 +3,7 @@ import './Rode.css';
 import { UserAuth } from '../authentication/AuthContext';
 import { db } from "../authentication/firebaseAuth";
 import { collection, getDocs, addDoc, doc, updateDoc } from "firebase/firestore"
+import { useNavigate } from 'react-router-dom';
 
 function TripRow(props) {
     var passengersArray = [];
@@ -14,7 +15,7 @@ function TripRow(props) {
     const [bookBtnVisibility, setBookBtnVisibility] = useState(!passengersArray.includes(currentUserEmail));
     const [cancelBtnVisibility, setCancelBtnVisibility] = useState(passengersArray.includes(currentUserEmail));
     const [time,setTime] = useState('');
-
+const navigate = useNavigate();
 
 
     function handleCancelButton() {
@@ -60,7 +61,9 @@ function TripRow(props) {
         }
 
     }
-
+function handleCalculateRoute() {
+    navigate("/Map",{state : { pickup: props.pickup,destination: props.destination   }});
+}
 
     return (
 
@@ -73,7 +76,7 @@ function TripRow(props) {
                 {bookBtnVisibility && (<button   onClick={handleBookButton}  >{"book trip"}</button>)}
                 
                 {cancelBtnVisibility && (<button   onClick={handleCancelButton}  >{"cancel trip"}</button>)}
-                <button >Calculate Route</button>
+                <button onClick={handleCalculateRoute} >Calculate Route</button>
 
             </th>
         </tr>

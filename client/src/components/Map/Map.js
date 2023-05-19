@@ -27,7 +27,7 @@ import {
 import { useRef, useState } from 'react'
 import { UserAuth } from '../authentication/AuthContext';
 import { useNavigate } from 'react-router-dom';
-
+import { useLocation } from "react-router-dom";
 
 const center = { lat: 31.963158, lng: 35.930359 }
 
@@ -39,10 +39,13 @@ function Map() {
   // user state declaration -------------------------------------------------------------------
   const navigate = useNavigate();
 
+  const location = useLocation();
 
-
-  // user state declaration -------------------------------------------------------------------
   
+  
+
+
+
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyDkvayJNjcKUagFyd9BU6PY-ewXwcLlu68",
     libraries,
@@ -60,9 +63,29 @@ function Map() {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef()
 
+
+  useEffect(()=>{
+    if (location.state !== null) {
+      try {
+        let pickup = location.state.pickup;
+        let destination = location.state.destination;
+        console.log("passed values = "+ pickup + destination);
+      originRef.current = pickup;
+      destiantionRef.current = destination;
+      calculateRoute();
+      
+      } catch (error) {
+        console.log(error);
+      }
+        }
+  
+  
+  },[])
   if (!isLoaded) {
     return <h1>Loading..</h1>
   }
+
+
 
   async function calculateRoute() {
     if (originRef.current.value === '' || destiantionRef.current.value === '') {
