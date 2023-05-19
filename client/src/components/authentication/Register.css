@@ -122,3 +122,17 @@ color: black;
   }
   
 }
+/* Media Queries */
+@media (max-width: 768px) {
+  .signup-form {
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .signup-form {
+    width: 90%;
+    max-width: 300px;
+  }
+}
