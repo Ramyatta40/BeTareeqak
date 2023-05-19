@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "./AuthContext";
@@ -10,29 +9,30 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const {user} = UserAuth();
-  const [modal, setModal] = useState(false)
-
-
-
+  const { user } = UserAuth();
+  const [modal, setModal] = useState(false);
 
   // On Submit handling
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await signIn(email, password)
-      .then( x => {navigate("/");})
-      ;
+      await signIn(email, password).then((x) => {
+        navigate("/");
+      });
     } catch (error) {
       setError(error.message);
       console.log(error.message);
     }
-
-    
   };
-const toggleModal = () => {
+
+  const toggleModal = () => {
     setModal(!modal);
+  };
+
+  const handleSend = () => {
+    // هاض تبع البريد
+    console.log();
   };
 
   return (
@@ -42,8 +42,8 @@ const toggleModal = () => {
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <div>
-          <i className="fa-solid fa-user"></i>
-          <input
+            <i className="fa-solid fa-user"></i>
+            <input
               type="email"
               placeholder="Enter email"
               value={email}
@@ -75,15 +75,16 @@ const toggleModal = () => {
           <div className="modalForm-content">
             <h5>Enter the email to change the password</h5>
             <form onSubmit={handleSubmit}>
-            <label className="em">Email </label>&nbsp;
-            
-            <input type="Email" placeholder=" Email"  className="pp"/>
+              <label className="em">Email </label>&nbsp;
+              <input type="Email" placeholder=" Email" className="pp" />
             </form>
-            <br/>
+            <br />
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
             </button>
-            
+            <button className="sen" onClick={handleSend}>
+              SEND
+            </button>
           </div>
         </div>
       )}
