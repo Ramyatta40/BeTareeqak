@@ -73,6 +73,8 @@ function Register() {
 
   return (
     <div className="ss">
+          <div className="animated-bg"></div> {/* Add the animated background */}
+
       <div className="signup-form">
         <div className="image"></div>
         <h1 className="title">signup</h1>

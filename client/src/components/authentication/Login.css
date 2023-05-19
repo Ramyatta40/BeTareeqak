@@ -17,7 +17,6 @@
 
 
 .bb {
-    background-color: var(--primary-color);
     height: 100vh;
     display: flex;
     align-items: center;
@@ -26,6 +25,7 @@
     position: absolute;
     top: 0;
     left: 0;
+
 }
 
 .box {

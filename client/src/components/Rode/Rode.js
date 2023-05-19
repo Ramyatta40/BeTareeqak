@@ -128,7 +128,6 @@ function Rode() {
 
   return (
     <div className="journeyTable">
-
       <button onClick={handleAddNewTrip}>Add new Trip</button>
       <button onClick={toggleModal2}>Add new Station</button>
       <br />

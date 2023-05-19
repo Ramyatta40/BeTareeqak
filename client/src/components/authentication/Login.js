@@ -38,6 +38,7 @@ function Login() {
   return (
     
     <div className="bb">
+      <div className="animated-bg"></div> {/* Add the animated background */}
       <div className="box">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
