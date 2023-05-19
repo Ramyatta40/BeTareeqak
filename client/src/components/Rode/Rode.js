@@ -5,7 +5,7 @@ import { UserAuth } from "../authentication/AuthContext";
 import { db } from "../authentication/firebaseAuth";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
-import { Input,HStack } from '@chakra-ui/react'
+import { Input, HStack } from '@chakra-ui/react'
 
 
 const libraries = ['places'];
@@ -25,10 +25,10 @@ function Rode() {
   const [trips, setTrips] = useState([]);
   const [filteredTrips, setFilteredTrips] = useState([]);
   const currentDatetime = new Date().toISOString().slice(0, 16);
-  const [stationAdd,setStationAdd] = useState('');
-  const [stationLabelAdd,setStationLabelAdd] = useState('');
-  const stationRef = useRef();
-  
+  const [stationAdd, setStationAdd] = useState('');
+  const [stationLabelAdd, setStationLabelAdd] = useState('');
+
+
 
 
   const [time, setTime] = useState("");
@@ -50,13 +50,13 @@ function Rode() {
     });
   };
   // creating new trip entery ----------------------------
-const createStation= async () => {
-  await addDoc(stationsCollectionRef,{
-    label: stationLabelAdd ,
-    place: stationAdd
-  })
+  const createStation = async () => {
+    await addDoc(stationsCollectionRef, {
+      label: stationLabelAdd,
+      place: stationAdd
+    })
 
-};
+  };
 
 
 
@@ -97,19 +97,18 @@ const createStation= async () => {
   function handleAddStation(e) {
     e.preventDefault();
     try {
-      if (stationLabelAdd ==='' || stationAdd ==='') {
-        alert("You have to fill all sections!")
-        
-      } else {
-        
 
-         
-        setStationAdd(stationRef.current.value);
-        console.log( stationAdd+' '+stationLabelAdd);
+      if (stationLabelAdd === '' || stationAdd === '') {
+        alert("You have to fill all sections!")
+
+      } else {
+
+        
+        console.log(stationAdd + '--- ' + stationLabelAdd);
         //createStation();
         toggleModal2();
       }
-      
+
     } catch (error) {
       console.log(error.message);
     }
@@ -213,18 +212,19 @@ const createStation= async () => {
 
             {/* <form onSubmit={handleAddStation}> */}
 
-              <label>Station label :</label>
-              <input id="stationLabel" type="text" placeholder="Station Label" onChange={(e)=>{setStationLabelAdd(e.target.value)}} />
-              <br />
-              <HStack>
-                <label>Station exact Place :</label>
-                <Autocomplete>
-                  <Input id="stationExactPlace" type="text" placeholder="Station exact Place :" onChange={(e)=>{setStationAdd(e.target.value)}} ref={stationRef} />
-                </Autocomplete></HStack>
-              <br />
-              <button type="submit" onClick={handleAddStation} value={"submit"}>
-                Add new Station
-              </button>
+            <label>Station label :</label>
+            <input id="stationLabel" type="text" placeholder="Station Label" onChange={(e) => { setStationLabelAdd(e.target.value) }} />
+            <br />
+            <HStack>
+              <label>Station exact Place :</label>
+              <Autocomplete>
+                <Input id="stationExactPlace" type="text" placeholder="Station exact Place :" onChange={(e) => { setStationAdd(e.target.value) }} />
+                {/* onChange={(e)=>{setStationAdd(e.target.value)}  } */}
+              </Autocomplete></HStack>
+            <br />
+            <button onClick={handleAddStation} >
+              Add new Station
+            </button>
 
             {/* </form> */}
 
