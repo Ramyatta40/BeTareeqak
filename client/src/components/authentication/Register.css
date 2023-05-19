@@ -89,8 +89,9 @@ root {
   border: none;
   font-family: 'Ubuntu', sans-serif;
   font-size: 14px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--gray-color);
   margin-top: 10px;
+  border-bottom-color: var(--secondary-color);
 
 
 }

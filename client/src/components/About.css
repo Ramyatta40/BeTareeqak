@@ -25,15 +25,17 @@ body {
 }*/
 
 .contact-wrap {
-	width: 80%;
+	width: 70%;
 	height: auto;
 	margin: auto;
 	display: flex;
 	flex-wrap: wrap;
+	
 }
 
 .contact-in {
-	padding: 40px 30px;
+	padding: 40px 40px;
+	
 }
 
 .contact-in:nth-child(1) {
