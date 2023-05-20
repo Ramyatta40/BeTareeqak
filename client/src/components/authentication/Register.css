@@ -109,10 +109,10 @@ color: black;
   margin-bottom: 20px;
   background: #520374;
   color: #fff;
-  border-radius: 40px;
   cursor: pointer;
   transition: 0.8s;
-  
+  min-width: 100%;
+  border-radius: 40px !important;
 }
 
 .btn:hover {
@@ -126,10 +126,12 @@ color: black;
   padding: 10px;
   transition: 0.8s;
   display: block;
+  border-radius: 40px;
 }
 
-.signup-form a:hover {
+.signup-form a:hover, .btn.btn-submit:hover {
   background: rgba(54, 8, 169, 0.411);
+  transition: all ease-in-out 250ms;
   color: #fff;
 }
 
