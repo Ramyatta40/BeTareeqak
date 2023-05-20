@@ -36,6 +36,8 @@ function Profile() {
 
   return (
     <div className="profile_a">
+                <div className="animated-bg"></div> {/* Add the animated background */}
+
       <h1 className="username_Profile">username</h1>
       <p className="email_Profile">email</p>
       <label htmlFor="imageUpload" className="button profile-label">

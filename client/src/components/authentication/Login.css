@@ -17,7 +17,6 @@
 
 
 .bb {
-    background-color: var(--primary-color);
     height: 100vh;
     display: flex;
     align-items: center;
@@ -26,6 +25,7 @@
     position: absolute;
     top: 0;
     left: 0;
+
 }
 
 .box {
@@ -33,7 +33,7 @@
     border-radius: 10px;
     padding: 45px;
     width: 375px;
-    max-width: 95%;
+    max-width: 30%;
     box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 10%);
 }
 
@@ -184,5 +184,23 @@
 
 
 }
+/*تعديل ليناسب جميع الاجهزة*/
 
+@media (max-width: 768px) {
+ 
+    .box {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
 
+    .box {
+      padding: 75px 25px;
+    }
+    .close-modal {
+      left: auto;
+      right: 10px;
+    }
+  }
+  
