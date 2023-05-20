@@ -62,17 +62,17 @@ function Map() {
   const originRef = useRef()
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef()
-
-
+var pickupPassed;
+var destinationPassed
   useEffect(()=>{
     if (location.state !== null) {
       try {
-        let pickup = location.state.pickup;
-        let destination = location.state.destination;
-        console.log("passed values = "+ pickup + destination);
-      originRef.current = pickup;
-      destiantionRef.current = destination;
-      calculateRoute();
+        pickupPassed = location.state.pickup;
+        destinationPassed = location.state.destination;
+        console.log("passed values = "+ pickupPassed + destinationPassed);
+      originRef.current = pickupPassed;
+      destiantionRef.current = destinationPassed;
+      calculateRoute2();
       
       } catch (error) {
         console.log(error);
@@ -85,7 +85,19 @@ function Map() {
     return <h1>Loading..</h1>
   }
 
-
+  async function calculateRoute2(){
+     // eslint-disable-next-line no-undef
+     const directionsService = new google.maps.DirectionsService()
+     const results = await directionsService.route({
+       origin: pickupPassed,
+       destination: destinationPassed,
+       // eslint-disable-next-line no-undef
+       travelMode: google.maps.TravelMode.DRIVING,
+     })
+     setDirectionsResponse(results)
+     setDistance(results.routes[0].legs[0].distance.text)
+     setDuration(results.routes[0].legs[0].duration.text)
+  }
 
   async function calculateRoute() {
     if (originRef.current.value === '' || destiantionRef.current.value === '') {
@@ -117,6 +129,8 @@ setSearchBtnVisibility('visible');
     setDuration('')
     originRef.current.value = ''
     destiantionRef.current.value = ''
+    pickupPassed = '';
+    destinationPassed = '';
   }
 
   return (
