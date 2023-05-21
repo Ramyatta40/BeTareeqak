@@ -16,7 +16,7 @@ function Profile() {
   const [name, setName] = useState('user name');
   const [isLoading, setIsLoading] = useState(true);
   const [phone, setPhone] = useState('');
-  const [] = useState();
+  const [isDriver,setIsDriver] = useState(false);
   const usersCollectionRef = collection(db, "Users");
   const [usersData, setUsersData] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -27,40 +27,32 @@ function Profile() {
 
     const getUsersData = async () => {
       try {
-        
         const data = await getDocs(usersCollectionRef);
         setUsersData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-       
-
-        
       } catch (error) {
         console.log(error);
-      }finally{setIsLoading(false);
+      } finally {
+        setIsLoading(false);
       }
-
     };
-
     getUsersData();
-    
-     
-
-    console.log(currentUserEmail);
-    
+    //console.log(currentUserEmail);
   }, []);
- useEffect(()=>{
-  currentUserData= getUserByEmail(currentUserEmail) ;
-  console.log(currentUserEmail);
-console.log(currentUserData);
-if(currentUserData){
-  setName(currentUserData.name);
+  useEffect(() => {
+    currentUserData = getUserByEmail(currentUserEmail);
+    console.log(currentUserEmail);
+    console.log(currentUserData);
+    if (currentUserData) {
+      setName(currentUserData.name);
+setPhone(currentUserData.phone);
+setIsDriver(currentUserData.driver);
 
-  
-}
+    }
 
- } , [currentUserEmail,usersData])
+  }, [currentUserEmail, usersData]);
 
 
-  const getUserByEmail =  (email) => {
+  const getUserByEmail = (email) => {
 
     return usersData.find(user => user.email === email);
 

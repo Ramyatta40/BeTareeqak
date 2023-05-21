@@ -28,7 +28,8 @@ function Rode() {
   const [stationAdd, setStationAdd] = useState('');
   const [stationLabelAdd, setStationLabelAdd] = useState('');
   const [stationList, setStationList] = useState([]);
-
+  const [pickupLoc, setPickupLoc] = useState('');
+  const [destinationLoc, setDestinationLoc] = useState('');
 
 
   const [time, setTime] = useState("");
@@ -43,8 +44,8 @@ function Rode() {
   // creating new trip entery ----------------------------
   const createTrip = async () => {
     await addDoc(tripsCollectionRef, {
-      pickup: getPickup(),
-      destination: getDestination(),
+      pickup: pickupLoc,
+      destination: destinationLoc,
       time: time,
       passengers: [],
     });
@@ -121,12 +122,12 @@ function Rode() {
   useEffect(() => {
     const getTrips = async () => {
       const tripsData = await getDocs(tripsCollectionRef);
-      setTrips(tripsData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))   );
+      setTrips(tripsData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
     };
     getTrips();
 
-   
+
 
   }, []);
 
@@ -137,7 +138,7 @@ function Rode() {
       {/* <button onClick={toggleModal2}>Add new Station</button> */}
       <br />
       <h2>All Available Trips</h2>
-      
+
 
       <table>
         <thead>
@@ -145,7 +146,7 @@ function Rode() {
             <th>Pick up </th>
             <th>Destination</th>
             <th>Time of beginning</th>
-            <th>Passengers</th>
+            <th>{"Passengers (Max 3)"} </th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -174,14 +175,14 @@ function Rode() {
 
               <label>Pick up Place :</label>
               <Autocomplete>
-                <input type="text" placeholder="pick up " />
+                <input type="text" placeholder="pick up " onChange={(e)=>{setPickupLoc(e.target.value)}} />
               </Autocomplete>
               <br />
               <label>Destination : </label>
               <Autocomplete>
                 <input
                   type="text"
-
+                  onChange={(e)=>{setDestinationLoc(e.target.value)}}
                   placeholder="Destination"
                 />
               </Autocomplete>
