@@ -173,7 +173,7 @@ function Register() {
             <input
               type="submit"
               defaultValue="Create a Account"
-              className="btn"
+              className="btn btn-submit"
               name="btn-save"
             />
           </div>
