@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+
 } from "firebase/auth";
 import { auth } from "./firebaseAuth";
 const PICKUP_LOC_STORAGE_KEY = "pickupLoc";
@@ -15,7 +16,7 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [pickupLoc, setPickupLoc] = useState(localStorage.getItem(PICKUP_LOC_STORAGE_KEY) || '');
   const [destinationLoc, setDestinationLoc] = useState(localStorage.getItem(DESTINATION_LOC_STORAGE_KEY) || '');
-
+const [currentUserData,setCurrentUserData] = useState({});
   useEffect(() => {
     localStorage.setItem(PICKUP_LOC_STORAGE_KEY, pickupLoc);
   }, [pickupLoc]);
@@ -54,8 +55,10 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
       setUser(currentUser);
+
     });
-    return unsubscribe();
+    
+    unsubscribe();
   }, []);
 
   return (

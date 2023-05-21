@@ -16,7 +16,7 @@ function Rode() {
     googleMapsApiKey: "AIzaSyDkvayJNjcKUagFyd9BU6PY-ewXwcLlu68",
     libraries,
   })
-  const stationsCollectionRef = collection(db, "Stations");
+  //const stationsCollectionRef = collection(db, "Stations");
   const tripsCollectionRef = collection(db, "Trips");
   const { getPickup } = UserAuth();
   const { getDestination } = UserAuth();
@@ -27,8 +27,9 @@ function Rode() {
   const currentDatetime = new Date().toISOString().slice(0, 16);
   const [stationAdd, setStationAdd] = useState('');
   const [stationLabelAdd, setStationLabelAdd] = useState('');
-
-
+  const [stationList, setStationList] = useState([]);
+  const [pickupLoc, setPickupLoc] = useState('');
+  const [destinationLoc, setDestinationLoc] = useState('');
 
 
   const [time, setTime] = useState("");
@@ -43,20 +44,20 @@ function Rode() {
   // creating new trip entery ----------------------------
   const createTrip = async () => {
     await addDoc(tripsCollectionRef, {
-      pickup: getPickup(),
-      destination: getDestination(),
+      pickup: pickupLoc,
+      destination: destinationLoc,
       time: time,
       passengers: [],
     });
   };
   // creating new trip entery ----------------------------
-  const createStation = async () => {
-    await addDoc(stationsCollectionRef, {
-      label: stationLabelAdd,
-      place: stationAdd
-    })
+  // const createStation = async () => {
+  //   await addDoc(stationsCollectionRef, {
+  //     label: stationLabelAdd,
+  //     place: stationAdd
+  //   })
 
-  };
+  // };
 
 
 
@@ -103,7 +104,7 @@ function Rode() {
 
       } else {
 
-        
+
         console.log(stationAdd + '--- ' + stationLabelAdd);
         //createStation();
         toggleModal2();
@@ -122,23 +123,30 @@ function Rode() {
     const getTrips = async () => {
       const tripsData = await getDocs(tripsCollectionRef);
       setTrips(tripsData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
     };
     getTrips();
+
+
+
   }, []);
 
   return (
     <div className="journeyTable">
+      <div className="onimated-bg"></div> {/* Add the animated background */}
       <button onClick={handleAddNewTrip}>Add new Trip</button>
-      <button onClick={toggleModal2}>Add new Station</button>
+      {/* <button onClick={toggleModal2}>Add new Station</button> */}
       <br />
       <h2>All Available Trips</h2>
+
+
       <table>
         <thead>
           <tr>
             <th>Pick up </th>
             <th>Destination</th>
             <th>Time of beginning</th>
-            <th>Passengers</th>
+            <th>{"Passengers (Max 3)"} </th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -164,21 +172,21 @@ function Rode() {
           <div className="modalForm-content">
             <h2>Fill the Information Below</h2>
             <form onSubmit={handleSubmit}>
-              <label>Pick up label :</label>
-              <input type="text" placeholder="pick up Label" />
-              <br />
-              <label>destination label :</label>
-              <input type="text" placeholder="destination Label" />
-              <br />
+
               <label>Pick up Place :</label>
-              <input type="text" value={getPickup()} placeholder="pick up " />
+              <Autocomplete>
+                <input type="text" placeholder="pick up " onChange={(e)=>{setPickupLoc(e.target.value)}} />
+              </Autocomplete>
               <br />
               <label>Destination : </label>
-              <input
-                type="text"
-                value={getDestination()}
-                placeholder="Destination"
-              />
+              <Autocomplete>
+                <input
+                  type="text"
+                  onChange={(e)=>{setDestinationLoc(e.target.value)}}
+                  placeholder="Destination"
+                />
+              </Autocomplete>
+
               <br />
               <label>Time of start : </label>
               <input

@@ -4,6 +4,8 @@ import "./Register.css";
 import { UserAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { db } from "../authentication/firebaseAuth";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -13,10 +15,28 @@ function Register() {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const usersCollectionRef = collection(db, "Users");
   const { createUser } = UserAuth();
   const { logout } = UserAuth();
 
+
+
+  const addNewUserData = async ()=> {
+    try {
+      await addDoc(usersCollectionRef,{
+        name: userName,
+        email: email,
+        phone: phone,
+        driver: false,
+  
+      });
+    } catch (error) {
+      console.log(error);
+    }
+ 
+
+
+  }
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -48,7 +68,7 @@ function Register() {
 
     try {
       await createUser(email, password);
-
+      addNewUserData();
       navigate("/");
     } catch (e) {
       setError(e.message);
@@ -153,7 +173,7 @@ function Register() {
             <input
               type="submit"
               defaultValue="Create a Account"
-              className="btn"
+              className="btn btn-submit"
               name="btn-save"
             />
           </div>
