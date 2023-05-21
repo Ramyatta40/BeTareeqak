@@ -1,53 +1,106 @@
-
-
-
-.profile_a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .profile_a img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 20px;
-  }
-  .profile_a img::before {
-    content: "";
-    display: block;
-    padding-top: 100%;
-  }
-  .profile_a input[type="file"] {
-    display: none;
-  }
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   
+}
 
-.username_Profile{
 
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: none;
+ max-width: 400px;
+  width: 100%;
   
-    background: #ebeb4e;
-    }
     
-    .email_Profile{
-    
-     
-        background: #ebeb4e;
-    
-    }
+  
+}
 
-    input[type="file"] {
+/* باقي الأنماط كما هي */
+
+.animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 115%;
+  z-index: -1;
+  background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color),#ff6584, #ffc600, #0beaa6);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;}
+
+.profile-info {
+  text-align: center;
+}
+
+.username-profile {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.email-profile {
+  color: #888;
+}
+
+.imageWrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.imageWrapper img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+}
+
+.button.profile-label {
+  display: block;
+  margin-top: 8px;
+}
+input[type="file"] {
   display: none;
 }
 
-.profile-label {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ebeb4e;
-  color: #fff;
-  border-radius: 5px;
+
+.button.profile-label {
+  padding: 8px 16px;
+  transition: 0.8s;
+  min-width: 100%;
+  border-radius: 40px !important;
+  background-color: #007bff;
+  border-radius: 4px;
   cursor: pointer;
+  text-align: center;
+
 }
 
+.action-section {
+  text-align: center;
+  margin-top: 16px;
+}
 
+p {
+  margin-bottom: 8px;
+}
 
+.action-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.action-button:last-child {
+  margin-right: 0;
+}

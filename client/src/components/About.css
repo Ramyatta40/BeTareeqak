@@ -6,12 +6,12 @@
 	box-sizing: border-box;
 }
 
-body {
+body{
     height: 10vh;
     display: grid;
     align-items: center;
     font-family: 'Poppins', sans-serif;
-}
+	}
 
 /*.zaraki{
     height: 100vh;
@@ -30,7 +30,8 @@ body {
 	margin: auto;
 	display: flex;
 	flex-wrap: wrap;
-	
+position: fixed;
+right: 15%;
 }
 
 .contact-in {

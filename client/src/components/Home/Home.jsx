@@ -48,7 +48,7 @@ function Home() {
   return (
     <div className="home_disgin">
       <nav className="home_nav">
-        <h1 className="home_logo"><img src="https://www.animatedimages.org/data/media/532/animated-chicken-image-0135.gif" alt="" /></h1>
+        {/*<h1 className="home_logo"><img src="https://www.animatedimages.org/data/media/532/animated-chicken-image-0135.gif" alt="" /></h1>*/}
         <ul className="home_ul">
           <li><a href='/About'>About</a></li>
           <li><a href='/Map'>Map</a></li>

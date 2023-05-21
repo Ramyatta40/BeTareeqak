@@ -95,11 +95,28 @@ if(currentUserData){
     return <p>Loading...</p>;
   }
   return (
-    <div className="profile_a">
-      <div className="animated-bg"></div> {/* Add the animated background */}
+<div className="card-container">
+<div className="animated-bg"></div> {/* Add the animated background */}
 
-      <h1 className="username_Profile">{name}</h1>
-      <p className="email_Profile">{currentUserEmail}</p>
+  <div className="card">
+  <div className="animated-bg"></div> {/* Add the animated background */}
+
+    <div className="profile-info">
+      <h1 className="username-profile">{name}</h1>
+      <p className="email-profile">{currentUserEmail}</p>
+      <label  className="phn">
+        phone number
+      </label>
+    </div>
+
+    <div className="image-section">
+      {selectedImage && (
+        <div className="imageWrapper">
+          <img src={selectedImage} alt="Selected" />
+        </div>
+        
+      )}
+
       <label htmlFor="imageUpload" className="button profile-label">
         Select Image
       </label>
@@ -109,15 +126,17 @@ if(currentUserData){
         accept=".jpg,.jpeg,.png"
         onChange={handleImageChange}
       />
-      {selectedImage && (
-        <div className="imageWrapper">
-          <img src={selectedImage} alt="Selected" />
-        </div>
-      )}
-      <p>DO YOU HAVE A CAR?</p>
-      <button >BECOME A DRIVER</button>
-      <button onClick={handleLogout}> Log out</button>
     </div>
+
+    <div className="action-section">
+      <p>DO YOU HAVE A CAR?</p>
+      <button className="action-button">BECOME A DRIVER</button>
+      <button className="action-button" onClick={handleLogout}>Log out</button>
+    </div>
+  </div>
+</div>
+
+
   );
 }
 

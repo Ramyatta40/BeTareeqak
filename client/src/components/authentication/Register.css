@@ -36,7 +36,8 @@ root {
   z-index: -1;
   background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color),#ff6584, #ffc600, #0beaa6);
   background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
+  animation: gradientAnimation 10s ease infinite; 
+  
 }
 
 @keyframes gradientAnimation {
@@ -62,6 +63,7 @@ root {
   transform: translate(-50%, -50%);
   overflow: hidden;
   border-radius: 5px;
+  position: fixed;
 }
 .signup-form form label{
   display: block;

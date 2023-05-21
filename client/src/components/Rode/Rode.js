@@ -132,7 +132,6 @@ function Rode() {
 
   return (
     <div className="journeyTable">
-      <div className="onimated-bg"></div> {/* Add the animated background */}
       <button onClick={handleAddNewTrip}>Add new Trip</button>
       {/* <button onClick={toggleModal2}>Add new Station</button> */}
       <br />
