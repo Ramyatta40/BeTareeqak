@@ -13,7 +13,7 @@ function Home() {
   const { logout } = UserAuth();
   const secondSectionRef = useRef(null);
 
-  useEffect(() => {
+ /* useEffect(() => {
     const audioElement = document.getElementById("mysong");
     audioElement.addEventListener("ended", () => setIsPlaying(false));
 
@@ -24,7 +24,7 @@ function Home() {
     return () => {
       audioElement.removeEventListener("ended", () => setIsPlaying(false));
     };
-  }, []);
+  }, []);*/
 
   const handleClick = () => {
     navigate("/Rode");
