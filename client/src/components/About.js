@@ -18,12 +18,12 @@ return (
 <p>info@democompany.com</p>
 <h2><i className="fa fa-map-marker" aria-hidden="true" /> Address</h2>
 <p>jordan,amman</p>
-<ul>
-<li><a href="https://www.facebook.com/"><i className="fa fa-facebook" aria-hidden="true" /></a></li>
-<li><a href="https://www.twitter.com/"><i className="fa fa-twitter" aria-hidden="true" /></a></li>
-<li><a href="https://www.google.com/"><i className="fa fa-google" aria-hidden="true" /></a></li>
-<li><a href="https://www.instagram.com/"><i className="fa fa-instagram" aria-hidden="true" /></a></li>
-</ul>
+    <ul class="social-icons">
+        <li><a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+    </ul>
 </div>
 <div className="contact-in">
 <h1>Send a Message</h1>
@@ -40,7 +40,6 @@ return (
     </div>
   </div></div>
   </div>
-  /*</container>*/
 
   );
 }

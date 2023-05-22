@@ -108,8 +108,8 @@ const handleSubmitDriver = () => {
     <div className="card-container">
       <div className="animated-bg"></div> {/* Add the animated background */}
 
-      <div className="card">
-        <div className="animated-bg"></div> {/* Add the animated background */}
+  <div className="card">
+  <div className="animated-bg"></div> {/* Add the animated background */}
 
         <div className="profile-info">
           <h1 className="username-profile">{name}</h1>
