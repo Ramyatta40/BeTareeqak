@@ -157,7 +157,8 @@ const handleSubmitDriver = () => {
             
 
             <label>Your Car Plate Number :</label>
-            <input id="stationLabel" type="text" placeholder="Station Label" />
+            <input type= "text" placeholder="##"  /> -
+            <input id="stationLabel" type="text" placeholder="#######" />
             <br />
 
             <label>Your Car Model :</label>
