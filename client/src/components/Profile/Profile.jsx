@@ -138,35 +138,32 @@ function Profile() {
         </div>
       </div>
       {modal && (
-        <div className="modalForm">
-          <div onClick={toggleModal} className="overlayForm"></div>
-          <div className="modalForm-content">
-            <button className="close-modal" onClick={toggleModal}>
-              CLOSE
-            </button>
-            <h2>Register as a Driver </h2>
+  <div className="modalForm">
+    <div onClick={toggleModal} className="overlayForm"></div>
+    <div className="modalForm-content">
+      <button className="pclose-modal" onClick={toggleModal}>
+        CLOSE
+      </button>
+      <h2>Register as a Driver</h2>
 
-
-
-            <label>Your Car Plate Number :</label>
-            <input type="text" placeholder="##" /> -
-            <input id="stationLabel" type="text" placeholder="#######" />
-            <br />
-
-            <label>Your Car Model :</label>
-
-            <input id="stationExactPlace" type="text" placeholder="Station exact Place :" />
-            {/* onChange={(e)=>{setStationAdd(e.target.value)}  } */}
-
-            <br />
-            <button  >
-              Submit Information
-            </button>
-
-
-
-          </div>
+            
+      <div className="form-group">
+        <label>Your Car Plate Number:</label>
+        <div className="input-group">
+          <input type="text" placeholder="##" />
+          <span></span>
+          
         </div>
+      </div>
+
+      <div className="form-group">
+        <label>Your Car Model:</label>
+        <input id="stationExactPlace" type="text" placeholder="Station exact Place:" />
+      </div>
+
+      <button className="submit-button">Submit Information</button>
+    </div>
+  </div>
       )}
     </div>
 

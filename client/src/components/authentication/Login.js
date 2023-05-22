@@ -81,7 +81,7 @@ function Login() {
               <input type="Email" placeholder=" Email" className="pp" />
             </form>
             <br />
-            <button className="close-modal" onClick={toggleModal}>
+            <button className="Lclose-modal" onClick={toggleModal}>
               CLOSE
             </button>
             <button className="sen" onClick={handleSend}>
