@@ -115,7 +115,13 @@ function TripRow(props) {
             <th>{props.pickup}</th>
             <th>{props.destination}</th>
             <th>{props.time.split('T').join(' ')}</th>
+            <th>{props.driver}</th>
+            <th>{props.driverPhone}</th>
+            <th>{props.plateNum}</th>
+            <th>{props.carModel}</th>
+            <th>{props.price}</th>
             <th>{passengersNames.join(' ')}</th>
+
             <th>
                 {bookBtnVisibility && (<button onClick={handleBookButton}  >{"book trip"}</button>)}
 

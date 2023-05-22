@@ -37,8 +37,9 @@ const[destinationLoc,setDestinationLoc]=useState('');
   const usersCollectionRef = collection(db, "Users");
   const [usersData, setUsersData] = useState([]);
   const [isDriver,setIsDriver] = useState(false);
-  const [price,setPrice] = useState();
-
+  const [price,setPrice] = useState('');
+  const [plateNum,setPlateNum] = useState('');
+const [carModel,setCarModel] = useState('');
   // console.log(
   //   "Pick up location :  " +
   //   getPickup() +
@@ -70,6 +71,10 @@ const[destinationLoc,setDestinationLoc]=useState('');
       setName(currentUserData.name);
       setPhone(currentUserData.phone);
       setIsDriver(currentUserData.driver);
+      if(currentUserData.driver){
+        setPlateNum(currentUserData.plateNum);
+        setCarModel(currentUserData.carModel);
+      }
     }
 
   }, [currentUserEmail, usersData])
@@ -86,7 +91,12 @@ const[destinationLoc,setDestinationLoc]=useState('');
       destination:destinationLoc,
       time: time,
       passengers: [],
-      passengersNames:[]
+      passengersNames:[],
+      driver: name,
+      price : price,
+      driverPhone: phone,
+      plateNum: plateNum,
+      carModel: carModel
     });
   };
   // creating new trip entery ----------------------------
@@ -113,7 +123,7 @@ const[destinationLoc,setDestinationLoc]=useState('');
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (time === "" || pickupLoc===''|| destinationLoc === '') {
+    if (time === "" || pickupLoc===''|| destinationLoc === '' || price === '') {
       alert("you have to fill All sectios");
     } else {
       console.log(time);
@@ -166,8 +176,8 @@ const[destinationLoc,setDestinationLoc]=useState('');
   return (
     <div className="journeyTable">
       <div className="animated-bg"></div> {/* Add the animated background */}
-
-      <button className="ADD" onClick={handleAddNewTrip}>Add new Trip</button>
+{isDriver && (<button className="ADD" onClick={handleAddNewTrip}>Add new Trip</button>)}
+      
       {/* <button onClick={toggleModal2}>Add new Station</button> */}
       <br />
       <h2>All Available Trips</h2>
@@ -179,7 +189,12 @@ const[destinationLoc,setDestinationLoc]=useState('');
             <th>Pick up </th>
             <th>Destination</th>
             <th>Time of beginning</th>
-            <th>Passengers</th>
+            <th>Driver Name</th>
+            <th>Driver Phone</th>
+            <th>Car Plate Num</th>
+            <th>Car Model</th>
+            <th>Price</th>
+            <th>Passengers (max 3)</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -194,6 +209,11 @@ const[destinationLoc,setDestinationLoc]=useState('');
                 passengers={trip.passengers}
                 tripId={trip.id}
                 passengersNames = {trip.passengersNames}
+                plateNum = {trip.plateNum}
+                driver = {trip.driver}
+                driverPhone = {trip.driverPhone}
+                carModel = {trip.carModel}
+                price = {trip.price}
               />
             );
           })}
@@ -206,7 +226,9 @@ const[destinationLoc,setDestinationLoc]=useState('');
           <div className="modalForm-content">
             <h2>Fill the Information Below</h2>
             <form onSubmit={handleSubmit}>
-
+<label>Price : </label><br/>
+<input type="text" placeholder="Price" onChange={(e)=>{setPrice(e.target.value)}}/>
+<br/>
               <label>Pick up Place :</label>
               <Autocomplete>
                 <input type="text" placeholder="pick up " onChange={(e)=>{setPickupLoc(e.target.value)}}/>

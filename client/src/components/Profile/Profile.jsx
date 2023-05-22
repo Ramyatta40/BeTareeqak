@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { UserAuth } from "../authentication/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { collection, getDoc, getDocs } from "firebase/firestore";
+import { collection, getDoc, getDocs,updateDoc,doc } from "firebase/firestore";
 import { db } from "../authentication/firebaseAuth";
 
 
@@ -18,14 +18,15 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [phone, setPhone] = useState('');
   const [isDriver, setIsDriver] = useState(false);
-  const [] = useState();
+  //const [] = useState();
   const usersCollectionRef = collection(db, "Users");
   const [usersData, setUsersData] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const [plateNum, setPlateNum] = useState('');
+  const [carModel, setCarModel] = useState('');
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
-
+var driverDoc;
 
   useEffect(() => {
     const getUsersData = async () => {
@@ -50,6 +51,7 @@ function Profile() {
       setName(currentUserData.name);
       setPhone(currentUserData.phone);
       setIsDriver(currentUserData.driver);
+      driverDoc = doc(db,"Users",currentUserData.id);
     }
 
   }, [currentUserEmail, usersData])
@@ -88,7 +90,19 @@ function Profile() {
 
   };
   const handleSubmitDriver = () => {
-
+if(plateNum === '' || carModel === ''){
+  alert("You have to fill All sections !");
+}
+else{
+  try {
+    setIsDriver(true)
+    const newFields = {driver : isDriver,plateNum: plateNum, carModel: carModel};
+updateDoc(driverDoc,newFields);
+toggleModal();
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 
   }
@@ -132,38 +146,38 @@ function Profile() {
 
         <div className="action-section">
           <div>
-            <p>DO YOU HAVE A CAR?</p>
-            <button className="action-button" onClick={() => { toggleModal() }}>BECOME A DRIVER</button>
+            {!isDriver && (<p>DO YOU HAVE A CAR?</p>)}
+            {!isDriver && (<button className="action-button" onClick={() => { toggleModal() }}>BECOME A DRIVER</button>)}
             <button className="action-button" onClick={handleLogout}>Log out</button></div>
         </div>
       </div>
       {modal && (
-  <div className="modalForm">
-    <div onClick={toggleModal} className="overlayForm"></div>
-    <div className="modalForm-content">
-      <button className="pclose-modal" onClick={toggleModal}>
-        CLOSE
-      </button>
-      <h2>Register as a Driver</h2>
+        <div className="modalForm">
+          <div onClick={toggleModal} className="overlayForm"></div>
+          <div className="modalForm-content">
+            <button className="pclose-modal" onClick={toggleModal}>
+              CLOSE
+            </button>
+            <h2>Register as a Driver</h2>
 
-            
-      <div className="form-group">
-        <label>Your Car Plate Number:</label>
-        <div className="input-group">
-          <input type="text" placeholder="##" />
-          <span></span>
-          
+
+            <div className="form-group">
+              <label>Your Car Plate Number:</label>
+              <div className="input-group">
+                <input type="text" placeholder="## - ######" onChange={(e)=>{setPlateNum(e.target.value)}} />
+                <span></span>
+
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Your Car Model:</label>
+              <input id="stationExactPlace" type="text" placeholder="Car Model" onChange={(e)=>{setCarModel(e.target.value)}} />
+            </div>
+
+            <button className="submit-button" onClick={handleSubmitDriver} >Submit Information</button>
+          </div>
         </div>
-      </div>
-
-      <div className="form-group">
-        <label>Your Car Model:</label>
-        <input id="stationExactPlace" type="text" placeholder="Station exact Place:" />
-      </div>
-
-      <button className="submit-button">Submit Information</button>
-    </div>
-  </div>
       )}
     </div>
 
