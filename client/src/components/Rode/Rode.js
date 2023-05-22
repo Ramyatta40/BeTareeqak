@@ -18,8 +18,8 @@ function Rode() {
   })
   //const stationsCollectionRef = collection(db, "Stations");
   const tripsCollectionRef = collection(db, "Trips");
-  const { getPickup } = UserAuth();
-  const { getDestination } = UserAuth();
+const [pickupLoc,setPickupLoc]=useState('');
+const[destinationLoc,setDestinationLoc]=useState('');
   const [modal, setModal] = useState(false);
   const [modal2, setModal2] = useState(false);
   const [trips, setTrips] = useState([]);
@@ -28,10 +28,16 @@ function Rode() {
   const [stationAdd, setStationAdd] = useState('');
   const [stationLabelAdd, setStationLabelAdd] = useState('');
   const [stationList, setStationList] = useState([]);
-
-
-
+  const { user } = UserAuth();
+  var currentUserEmail = user.email;
+  var currentUserData;
+  const [name, setName] = useState('user name');
+  const [phone, setPhone] = useState('');
   const [time, setTime] = useState("");
+  const usersCollectionRef = collection(db, "Users");
+  const [usersData, setUsersData] = useState([]);
+  const [isDriver,setIsDriver] = useState(false);
+  const [price,setPrice] = useState();
 
   // console.log(
   //   "Pick up location :  " +
@@ -40,23 +46,50 @@ function Rode() {
   //   getDestination()
   // );
 
-  // creating new trip entery ----------------------------
+  useEffect(() => {
+
+    const getUsersData = async () => {
+      try {
+
+        const data = await getDocs(usersCollectionRef);
+        setUsersData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      } catch (error) {
+        console.log(error);
+      } 
+
+    };
+    getUsersData();
+    console.log(currentUserEmail);
+  }, []);
+
+  useEffect(() => {
+    currentUserData = getUserByEmail(currentUserEmail);
+    console.log(currentUserEmail);
+    console.log(currentUserData);
+    if (currentUserData) {
+      setName(currentUserData.name);
+      setPhone(currentUserData.phone);
+      setIsDriver(currentUserData.driver);
+    }
+
+  }, [currentUserEmail, usersData])
+
+  const getUserByEmail = (email) => {
+
+    return usersData.find(user => user.email === email);
+
+  }
+// creating new trip entery ----------------------------
   const createTrip = async () => {
     await addDoc(tripsCollectionRef, {
-      pickup: getPickup(),
-      destination: getDestination(),
+      pickup: pickupLoc,
+      destination:destinationLoc,
       time: time,
       passengers: [],
+      passengersNames:[]
     });
   };
   // creating new trip entery ----------------------------
-  // const createStation = async () => {
-  //   await addDoc(stationsCollectionRef, {
-  //     label: stationLabelAdd,
-  //     place: stationAdd
-  //   })
-
-  // };
 
 
 
@@ -80,8 +113,8 @@ function Rode() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (time === "") {
-      alert("you have to fill the time section");
+    if (time === "" || pickupLoc===''|| destinationLoc === '') {
+      alert("you have to fill All sectios");
     } else {
       console.log(time);
       try {
@@ -160,6 +193,7 @@ function Rode() {
                 time={trip.time}
                 passengers={trip.passengers}
                 tripId={trip.id}
+                passengersNames = {trip.passengersNames}
               />
             );
           })}
@@ -175,14 +209,14 @@ function Rode() {
 
               <label>Pick up Place :</label>
               <Autocomplete>
-                <input type="text" placeholder="pick up " />
+                <input type="text" placeholder="pick up " onChange={(e)=>{setPickupLoc(e.target.value)}}/>
               </Autocomplete>
               <br />
               <label>Destination : </label>
               <Autocomplete>
                 <input
                   type="text"
-
+                  onChange={(e)=>{setDestinationLoc(e.target.value)}}
                   placeholder="Destination"
                 />
               </Autocomplete>

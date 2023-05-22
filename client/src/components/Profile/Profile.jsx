@@ -8,47 +8,40 @@ import { db } from "../authentication/firebaseAuth";
 
 
 function Profile() {
-  const { user } = UserAuth();
+
   const { logout } = UserAuth();
   // const [currentUserEmail,setCurrentUserEmail] = useState(user.email);
+  const { user } = UserAuth();
   var currentUserEmail = user.email;
   var currentUserData;
   const [name, setName] = useState('user name');
   const [isLoading, setIsLoading] = useState(true);
   const [phone, setPhone] = useState('');
+  const [isDriver, setIsDriver] = useState(false);
   const [] = useState();
   const usersCollectionRef = collection(db, "Users");
   const [usersData, setUsersData] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
 
 
   useEffect(() => {
-
     const getUsersData = async () => {
       try {
-
         const data = await getDocs(usersCollectionRef);
         setUsersData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-
-
-
       } catch (error) {
         console.log(error);
       } finally {
         setIsLoading(false);
       }
-
     };
-
     getUsersData();
-
-
-
     console.log(currentUserEmail);
-
   }, []);
+
   useEffect(() => {
     currentUserData = getUserByEmail(currentUserEmail);
     console.log(currentUserEmail);
@@ -56,8 +49,7 @@ function Profile() {
     if (currentUserData) {
       setName(currentUserData.name);
       setPhone(currentUserData.phone);
-
-
+      setIsDriver(currentUserData.driver);
     }
 
   }, [currentUserEmail, usersData])
@@ -95,11 +87,11 @@ function Profile() {
 
 
   };
-const handleSubmitDriver = () => {
+  const handleSubmitDriver = () => {
 
 
 
-}
+  }
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -108,8 +100,8 @@ const handleSubmitDriver = () => {
     <div className="card-container">
       <div className="animated-bg"></div> {/* Add the animated background */}
 
-  <div className="card">
-  <div className="animated-bg"></div> {/* Add the animated background */}
+      <div className="card">
+        <div className="animated-bg"></div> {/* Add the animated background */}
 
         <div className="profile-info">
           <h1 className="username-profile">{name}</h1>
@@ -140,9 +132,9 @@ const handleSubmitDriver = () => {
 
         <div className="action-section">
           <div>
-          <p>DO YOU HAVE A CAR?</p>
-          <button className="action-button" onClick={() => { toggleModal() }}>BECOME A DRIVER</button>
-          <button className="action-button" onClick={handleLogout}>Log out</button></div>
+            <p>DO YOU HAVE A CAR?</p>
+            <button className="action-button" onClick={() => { toggleModal() }}>BECOME A DRIVER</button>
+            <button className="action-button" onClick={handleLogout}>Log out</button></div>
         </div>
       </div>
       {modal && (
@@ -154,10 +146,10 @@ const handleSubmitDriver = () => {
             </button>
             <h2>Register as a Driver </h2>
 
-            
+
 
             <label>Your Car Plate Number :</label>
-            <input type= "text" placeholder="##"  /> -
+            <input type="text" placeholder="##" /> -
             <input id="stationLabel" type="text" placeholder="#######" />
             <br />
 
@@ -171,7 +163,7 @@ const handleSubmitDriver = () => {
               Submit Information
             </button>
 
-           
+
 
           </div>
         </div>
