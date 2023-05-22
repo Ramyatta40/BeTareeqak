@@ -132,7 +132,9 @@ function Rode() {
 
   return (
     <div className="journeyTable">
-      <button onClick={handleAddNewTrip}>Add new Trip</button>
+      <div className="animated-bg"></div> {/* Add the animated background */}
+
+      <button className="ADD" onClick={handleAddNewTrip}>Add new Trip</button>
       {/* <button onClick={toggleModal2}>Add new Station</button> */}
       <br />
       <h2>All Available Trips</h2>
@@ -196,13 +198,14 @@ function Rode() {
                 }}
               />
               <br />
-              <button type="submit" value={"submit"}>
-                Add new Trip
+              <button className="add" type="submit" value={"submit"}>
+                ADD NEW TRIP
               </button>
             </form>
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
             </button>
+            
           </div>
         </div>
       )}
@@ -211,7 +214,7 @@ function Rode() {
           <div onClick={toggleModal2} className="overlayForm"></div>
           <div className="modalForm-content">
             <button className="close-modal" onClick={toggleModal2}>
-              CLOSE
+              close
             </button>
             <h2>Add new Station </h2>
 
@@ -232,6 +235,7 @@ function Rode() {
             </button>
 
             {/* </form> */}
+            
 
           </div>
         </div>

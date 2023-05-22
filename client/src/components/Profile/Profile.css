@@ -15,12 +15,10 @@
   box-shadow: none;
  max-width: 400px;
   width: 100%;
-  
-    
-  
-}
+  height: 600px;
 
-/* باقي الأنماط كما هي */
+}
+ 
 
 .animated-bg {
   position: absolute;
@@ -78,7 +76,8 @@ input[type="file"] {
   background-color: #007bff;
   border-radius: 4px;
   cursor: pointer;
-  text-align: center;
+  text-align: center; 
+  
 
 }
 
