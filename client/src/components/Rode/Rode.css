@@ -5,6 +5,9 @@
   
   table, th, td {
     border: 1px solid black;
+    font-family: "Courier New";
+  font-weight: bold;
+
   }
 
   .journeyTable table {

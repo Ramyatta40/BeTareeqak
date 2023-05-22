@@ -42,9 +42,18 @@
 }
 
 .email-profile {
-  color: #888;
-}
+  color: black;
+  font-family: "Courier New";
+  font-weight: bold;
 
+
+}
+.phn{
+  font-family: "Courier New";
+  font-weight: bold;
+
+
+}
 .imageWrapper {
   margin-top: 16px;
   display: flex;
@@ -88,6 +97,7 @@ input[type="file"] {
 
 p {
   margin-bottom: 8px;
+  
 }
 
 .action-button {
@@ -113,6 +123,7 @@ body.active-modal {
   display: block;
   margin: 100px auto 0;
   font-size: 18px;
+  
 }
 
 .modalForm, .overlayForm {
@@ -144,13 +155,14 @@ body.active-modal {
 
 .pclose-modal {
   position: absolute;
-  top: 195px;
+  top: 190px;
   right: 10px;
-  padding: 5px 7px;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   border:none;
   background-color: #007bff;
+
 
 
 }
@@ -163,23 +175,37 @@ body.active-modal {
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  font-family: "Courier New";
+  font-weight: bold;
+
 }
 
 .input-group {
   display: flex;
+  font-family: "Courier New";
+  font-weight: bold;
+
 }
 .coding{
   width: 200px;
+  font-family: "Courier New";
+  font-weight: bold;
+
 }
 .input-group input#stationExactPlace {
   margin-right: 5px;
+  font-family: "Courier New";
+  font-weight: bold;
 
 }
 
 .submit-button {
   padding: 10px 20px;
+  left: 50px;
   background-color: #007bff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  
+  
 }
