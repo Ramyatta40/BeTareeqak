@@ -30,16 +30,6 @@ function Home() {
     navigate("/Rode");
   };
 
-  const togglePlay = () => {
-    const audioElement = document.getElementById("mysong");
-    setIsPlaying(!isPlaying);
-
-    if (isPlaying) {
-      audioElement.pause();
-    } else {
-      audioElement.play();
-    }
-  };
 
   const scrollToSection = () => {
     secondSectionRef.current.scrollIntoView({ behavior: "smooth" });
@@ -64,22 +54,7 @@ function Home() {
         </button>
       </div>
 
-      <div className="audio_player">
-        <audio id="mysong" src={WalkerSound} type="audio/mp3" />
-
-        <div className="player_controls">
-          <button id="icon" onClick={togglePlay}>
-            {isPlaying ? (
-              <img src={pauseImage} alt="Pause" />
-            ) : (
-              <img src={playImage} alt="Play" />
-            )}
-          </button>
-          <span className={isPlaying ? 'song_title playing' : 'song_title'}>
-          love your voice          </span>
-        </div>
-      </div>
-
+ 
       <button className="scroll_button" onClick={scrollToSection}>
         <img src={arrowImage} alt="Scroll Down" />
       </button>
