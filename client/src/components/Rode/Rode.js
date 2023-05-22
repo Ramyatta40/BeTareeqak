@@ -202,7 +202,7 @@ function Rode() {
                 ADD NEW TRIP
               </button>
             </form>
-            <button className="close-modal" onClick={toggleModal}>
+            <button className="Rclose-modal" onClick={toggleModal}>
               CLOSE
             </button>
             
