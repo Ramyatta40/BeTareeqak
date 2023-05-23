@@ -21,7 +21,12 @@ function Login() {
         navigate("/");
       });
     } catch (error) {
-      setError(error.message);
+      if (error.code == 'auth/wrong-password' || error.code == 'auth/user-not-found') {
+        setError("Wrong Email or Password");
+      } else {
+        setError('connection error');
+      }
+      
       console.log(error.message);
     }
   };
@@ -62,9 +67,11 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+        
           <a href="#" onClick={toggleModal} className="forgot">
             Forgot Password?
           </a>
+          {error && <p  style={{ color: "red", marginTop: "35px" }}>{error}</p>}
           <input type="submit" value="Login" />
         </form>
         <a href="/Register" className="sign-up">
