@@ -75,7 +75,7 @@ function TripRow(props) {
             }
 
         } else {
-            alert("you aren't in this trip")
+            alert("you are not in this trip")
         }
     }
 
@@ -93,11 +93,14 @@ function TripRow(props) {
                     passengersNames.push(name);
                     const newFields = { passengers: passengersArray,passengersNames :passengersNames };
                     updateDoc(tripDoc, newFields);
+                    setBookBtnVisibility(false);
+                    setCancelBtnVisibility(true);
+
+
                 } else {
                     alert("the trip is full ");
                 }
-                setBookBtnVisibility(false);
-                setCancelBtnVisibility(true);
+
             } catch (error) {
                 console.log(error.message);
             }
@@ -120,7 +123,7 @@ function TripRow(props) {
             <th>{props.plateNum}</th>
             <th>{props.carModel}</th>
             <th>{props.price}</th>
-            <th>{passengersNames.join(' ')}</th>
+            <th>{passengersNames.join(' - ')}</th>
 
             <th>
                 {bookBtnVisibility && (<button onClick={handleBookButton}  >{"book trip"}</button>)}

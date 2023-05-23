@@ -56,6 +56,8 @@ function Profile() {
       setPhone(currentUserData.phone);
       setIsDriver(currentUserData.driver);
       setUserId(currentUserData.id);
+      setPlateNum(currentUserData.plateNum);
+      setCarModel(currentUserData.carModel)
      // driverDoc = doc(db, "Users", currentUserData.id);
     }
   }, [currentUserEmail, usersData]);
@@ -120,7 +122,11 @@ function Profile() {
         <div className="profile-info">
           <h1 className="username-profile">{name}</h1>
           <p className="email-profile">{currentUserEmail}</p>
-          <label className="phn">phone number: {phone}</label>
+          <label className="phn">Phone Number: {phone}</label>
+          {isDriver && (<label className="phn">Car Plate Number: {plateNum}</label>)}
+          {isDriver && ( <label className="phn">Car Model: {carModel}</label>)}
+          
+         
         </div>
         <div className="image-section">
           {selectedImage && (
@@ -129,9 +135,7 @@ function Profile() {
             </div>
           )}
 
-          <label htmlFor="imageUpload" className="button profile-label">
-            Select Image
-          </label>
+         
           <input
             id="imageUpload"
             type="file"
