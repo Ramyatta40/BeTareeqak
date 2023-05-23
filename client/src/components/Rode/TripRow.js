@@ -65,7 +65,7 @@ function TripRow(props) {
 
             try {
                 passengersArray.splice(passengersArray.indexOf(currentUserEmail), 1);
-                passengersNames.splice(passengersNames.indexOf(name),1)
+                passengersNames.splice(passengersNames.indexOf(currentUserEmail),1)
                 const newFields = { passengers: passengersArray };
                 updateDoc(tripDoc, newFields);
                 setBookBtnVisibility(true);
