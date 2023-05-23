@@ -30,7 +30,7 @@ function Profile() {
   const [carModel, setCarModel] = useState("");
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
-  var driverDoc;
+  
 
   useEffect(() => {
     const getUsersData = async () => {
@@ -56,7 +56,7 @@ function Profile() {
       setPhone(currentUserData.phone);
       setIsDriver(currentUserData.driver);
       setUserId(currentUserData.id);
-      driverDoc = doc(db, "Users", currentUserData.id);
+     // driverDoc = doc(db, "Users", currentUserData.id);
     }
   }, [currentUserEmail, usersData]);
   useEffect(() => {}, [userId]);
@@ -66,6 +66,7 @@ function Profile() {
   };
   const toggleModal = () => {
     setModal(!modal);
+    console.log(userId);
   };
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -99,6 +100,7 @@ function Profile() {
           plateNum: plateNum,
           carModel: carModel,
         };
+        const driverDoc = doc(db, "Users", userId);
         updateDoc(driverDoc, newFields);
         toggleModal();
       } catch (error) {
