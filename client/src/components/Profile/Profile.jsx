@@ -2,31 +2,35 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { UserAuth } from "../authentication/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { collection, getDoc, getDocs,updateDoc,doc } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../authentication/firebaseAuth";
 
-
-
 function Profile() {
-
   const { logout } = UserAuth();
   // const [currentUserEmail,setCurrentUserEmail] = useState(user.email);
   const { user } = UserAuth();
   var currentUserEmail = user.email;
   var currentUserData;
-  const [name, setName] = useState('user name');
+  const [name, setName] = useState("user name");
   const [isLoading, setIsLoading] = useState(true);
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState("");
   const [isDriver, setIsDriver] = useState(false);
+  const [userId, setUserId] = useState();
   //const [] = useState();
   const usersCollectionRef = collection(db, "Users");
   const [usersData, setUsersData] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [plateNum, setPlateNum] = useState('');
-  const [carModel, setCarModel] = useState('');
+  const [plateNum, setPlateNum] = useState("");
+  const [carModel, setCarModel] = useState("");
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
-var driverDoc;
+  var driverDoc;
 
   useEffect(() => {
     const getUsersData = async () => {
@@ -51,21 +55,18 @@ var driverDoc;
       setName(currentUserData.name);
       setPhone(currentUserData.phone);
       setIsDriver(currentUserData.driver);
-      driverDoc = doc(db,"Users",currentUserData.id);
+      setUserId(currentUserData.id);
+      driverDoc = doc(db, "Users", currentUserData.id);
     }
-
-  }, [currentUserEmail, usersData])
-
+  }, [currentUserEmail, usersData]);
+  useEffect(() => {}, [userId]);
 
   const getUserByEmail = (email) => {
-
-    return usersData.find(user => user.email === email);
-
-  }
+    return usersData.find((user) => user.email === email);
+  };
   const toggleModal = () => {
-
     setModal(!modal);
-  }
+  };
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -82,30 +83,29 @@ var driverDoc;
   const handleLogout = async () => {
     try {
       await logout();
-      navigate("/")
+      navigate("/");
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-
-
   };
   const handleSubmitDriver = () => {
-if(plateNum === '' || carModel === ''){
-  alert("You have to fill All sections !");
-}
-else{
-  try {
-    setIsDriver(true)
-    const newFields = {driver : isDriver,plateNum: plateNum, carModel: carModel};
-updateDoc(driverDoc,newFields);
-toggleModal();
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-
-  }
+    if (plateNum === "" || carModel === "") {
+      alert("You have to fill All sections !");
+    } else {
+      try {
+        setIsDriver(true);
+        const newFields = {
+          driver: true,
+          plateNum: plateNum,
+          carModel: carModel,
+        };
+        updateDoc(driverDoc, newFields);
+        toggleModal();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -113,24 +113,18 @@ toggleModal();
   return (
     <div className="card-container">
       <div className="animated-bg"></div> {/* Add the animated background */}
-
       <div className="card">
         <div className="animated-bg"></div> {/* Add the animated background */}
-
         <div className="profile-info">
           <h1 className="username-profile">{name}</h1>
           <p className="email-profile">{currentUserEmail}</p>
-          <label className="phn">
-            phone number: {phone}
-          </label>
+          <label className="phn">phone number: {phone}</label>
         </div>
-
         <div className="image-section">
           {selectedImage && (
             <div className="imageWrapper">
               <img src={selectedImage} alt="Selected" />
             </div>
-
           )}
 
           <label htmlFor="imageUpload" className="button profile-label">
@@ -143,12 +137,23 @@ toggleModal();
             onChange={handleImageChange}
           />
         </div>
-
         <div className="action-section">
           <div>
-            {!isDriver && (<p>DO YOU HAVE A CAR?</p>)}
-            {!isDriver && (<button className="action-button" onClick={() => { toggleModal() }}>BECOME A DRIVER</button>)}
-            <button className="action-button" onClick={handleLogout}>Log out</button></div>
+            {!isDriver && <p>DO YOU HAVE A CAR?</p>}
+            {!isDriver && (
+              <button
+                className="action-button"
+                onClick={() => {
+                  toggleModal();
+                }}
+              >
+                BECOME A DRIVER
+              </button>
+            )}
+            <button className="action-button" onClick={handleLogout}>
+              Log out
+            </button>
+          </div>
         </div>
       </div>
       {modal && (
@@ -160,28 +165,39 @@ toggleModal();
             </button>
             <h2>Register as a Driver</h2>
 
-
             <div className="form-group">
               <label>Your Car Plate Number:</label>
               <div className="input-group">
-                <input type="text" placeholder="## - ######" onChange={(e)=>{setPlateNum(e.target.value)}} />
+                <input
+                  type="text"
+                  placeholder="## - ######"
+                  onChange={(e) => {
+                    setPlateNum(e.target.value);
+                  }}
+                />
                 <span></span>
-
               </div>
             </div>
 
             <div className="form-group">
               <label>Your Car Model:</label>
-              <input id="stationExactPlace" type="text" placeholder="Car Model" onChange={(e)=>{setCarModel(e.target.value)}} />
+              <input
+                id="stationExactPlace"
+                type="text"
+                placeholder="Car Model"
+                onChange={(e) => {
+                  setCarModel(e.target.value);
+                }}
+              />
             </div>
 
-            <button className="submit-button" onClick={handleSubmitDriver} >Submit Information</button>
+            <button className="submit-button" onClick={handleSubmitDriver}>
+              Submit Information
+            </button>
           </div>
         </div>
       )}
     </div>
-
-
   );
 }
 

@@ -14,6 +14,7 @@ function Register() {
   const [userName, setUserName] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
+  const [error2, setError2] = useState('');
   const navigate = useNavigate();
   const usersCollectionRef = collection(db, "Users");
   const { createUser } = UserAuth();
@@ -25,7 +26,7 @@ function Register() {
     try {
       await addDoc(usersCollectionRef,{
         name: userName,
-        email: email,
+        email: email.toLowerCase(),
         phone: phone,
         driver: false,
   
@@ -71,7 +72,15 @@ function Register() {
       addNewUserData();
       navigate("/");
     } catch (e) {
-      setError(e.message);
+      setError2(e.massage);
+      if (e.code === 'auth/email-already-in-use') {
+        setError('This Email Already Signed Up');
+      }
+      else{
+        setError('Network connection Error');
+      }
+
+      
       console.log(e.message);
     }
   };
@@ -101,7 +110,7 @@ function Register() {
 
         <form action="#" onSubmit={handleRegisterSubmit}>
           <div>
-            <label>user name</label>
+            <label>User Full Name</label>
             <input
               type="text"
               placeholder=" Full Name"
@@ -126,7 +135,7 @@ function Register() {
           />
 
           <div>
-            <label>password</label>
+            <label>Password</label>
             <input
               type="password"
               placeholder=" Password"
@@ -137,7 +146,7 @@ function Register() {
               }}
             />
           </div>
-          <label>confirm</label>
+          <label>Confirm Password</label>
 
           <div>
             <input
@@ -152,7 +161,7 @@ function Register() {
           </div>
 
           <div>
-          <label>phone</label>
+          <label>Phone Number</label>
 
             <input
               type="text"
@@ -166,7 +175,7 @@ function Register() {
           </div>
 
           <div>
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p className="warning-paragraph" style={{ color: "red" }}>{error}</p>}
           </div>
 
           <div>
