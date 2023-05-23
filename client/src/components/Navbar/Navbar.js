@@ -23,7 +23,7 @@ const Navbar = () => {
             </Nav.Link>
 
             <Nav.Link to="/Rode" as={NavLink}>
-              Rode
+              Ride
             </Nav.Link>
             <Nav.Link to="/Profile" as={NavLink}>
             Profile

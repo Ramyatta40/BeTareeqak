@@ -122,7 +122,7 @@ function TripRow(props) {
             <th>{props.driverPhone}</th>
             <th>{props.plateNum}</th>
             <th>{props.carModel}</th>
-            <th>{props.price}</th>
+            <th>{props.price} JOD</th>
             <th>{passengersNames.join(' - ')}</th>
 
             <th>
