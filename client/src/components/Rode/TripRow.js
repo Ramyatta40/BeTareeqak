@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Rode.css';
 import { UserAuth } from '../authentication/AuthContext';
 import { db } from "../authentication/firebaseAuth";
-import { collection, getDocs, addDoc, doc, updateDoc } from "firebase/firestore"
+import { collection, getDocs, addDoc, doc, updateDoc,deleteDoc } from "firebase/firestore"
 import { useNavigate } from 'react-router-dom';
 
 function TripRow(props) {
@@ -25,6 +25,7 @@ function TripRow(props) {
     const [bookBtnVisibility, setBookBtnVisibility] = useState(!passengersArray.includes(currentUserEmail));
     const [cancelBtnVisibility, setCancelBtnVisibility] = useState(passengersArray.includes(currentUserEmail));
     const [time, setTime] = useState('');
+    const [thisTripDriver,setThisTripDriver] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const getUsersData = async () => {
@@ -49,6 +50,7 @@ function TripRow(props) {
             setName(currentUserData.name);
             setPhone(currentUserData.phone);
             setIsDriver(currentUserData.driver);
+            setThisTripDriver(currentUserData.phone === props.driverPhone);
         }
 
     }, [currentUserEmail, usersData])
@@ -108,6 +110,17 @@ function TripRow(props) {
         }
 
     }
+    const handleDeleteTrip =async()=> {
+        try {
+            await deleteDoc(tripDoc,props.tripId);
+            window.location.reload();
+        } catch (error) {
+            console.log(error.message);
+        }
+        
+
+        
+    }
     function handleCalculateRoute() {
         navigate("/Map", { state: { pickup: props.pickup, destination: props.destination } });
     }
@@ -117,7 +130,7 @@ function TripRow(props) {
         <tr>
             <th>{props.pickup}</th>
             <th>{props.destination}</th>
-            <th>{props.time.split('T').join(' ')}</th>
+            <th>date: {props.time.split('T').join(' time: ')}</th>
             <th>{props.driver}</th>
             <th>{props.driverPhone}</th>
             <th>{props.plateNum}</th>
@@ -130,6 +143,7 @@ function TripRow(props) {
 
                 {cancelBtnVisibility && (<button onClick={handleCancelButton}  >{"cancel trip"}</button>)}
                 <button onClick={handleCalculateRoute} >Calculate Route</button>
+                {thisTripDriver&&(<button onClick={handleDeleteTrip}> delete this trip</button>)}
 
             </th>
         </tr>

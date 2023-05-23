@@ -17,18 +17,20 @@ function Profile() {
   const { user } = UserAuth();
   var currentUserEmail = user.email;
   var currentUserData;
-  const [name, setName] = useState("user name");
+  //const [] = useState();
+   const usersCollectionRef = collection(db, "Users");
   const [isLoading, setIsLoading] = useState(true);
   const [phone, setPhone] = useState("");
   const [isDriver, setIsDriver] = useState(false);
   const [userId, setUserId] = useState();
-  //const [] = useState();
-  const usersCollectionRef = collection(db, "Users");
+  const [name, setName] = useState("user name");
+ 
   const [usersData, setUsersData] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [plateNum, setPlateNum] = useState("");
   const [carModel, setCarModel] = useState("");
   const navigate = useNavigate();
+
   const [modal, setModal] = useState(false);
   
 
@@ -87,6 +89,7 @@ function Profile() {
     try {
       await logout();
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.log(error.message);
     }
@@ -105,6 +108,7 @@ function Profile() {
         const driverDoc = doc(db, "Users", userId);
         updateDoc(driverDoc, newFields);
         toggleModal();
+        window.location.reload();
       } catch (error) {
         console.log(error);
       }

@@ -71,6 +71,7 @@ function Register() {
       await createUser(email, password);
       addNewUserData();
       navigate("/");
+      window.location.reload();
     } catch (e) {
       setError2(e.massage);
       if (e.code === 'auth/email-already-in-use') {

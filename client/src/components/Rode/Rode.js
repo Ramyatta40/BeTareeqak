@@ -130,6 +130,7 @@ const [carModel,setCarModel] = useState('');
       try {
         createTrip();
         toggleModal();
+        window.location.reload();
       } catch (error) {
         console.log(error.message)
         alert("somthing went wronge , error :" + error.message);

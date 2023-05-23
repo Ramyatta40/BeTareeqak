@@ -11,8 +11,11 @@ function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const navigate = useNavigate();
   const { logout } = UserAuth();
+  const {user} =  UserAuth();
   const secondSectionRef = useRef(null);
 
+
+  //window.location.reload();
  /* useEffect(() => {
     const audioElement = document.getElementById("mysong");
     audioElement.addEventListener("ended", () => setIsPlaying(false));
@@ -26,6 +29,9 @@ function Home() {
     };
   }, []);*/
 
+  // useEffect(()=>{
+  //   window.location.reload();
+  // },[user])
   const handleClick = () => {
     navigate("/Rode");
   };
@@ -42,7 +48,7 @@ function Home() {
         <ul className="home_ul">
           <li><a href='/About'>About</a></li>
           <li><a href='/Map'>Map</a></li>
-          <li><a href='/Rode'>Rode</a></li>
+          <li><a href='/Rode'>Ride</a></li>
         </ul>
       </nav>
 

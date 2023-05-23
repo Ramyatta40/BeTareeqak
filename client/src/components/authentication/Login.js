@@ -19,6 +19,7 @@ function Login() {
     try {
       await signIn(email, password).then((x) => {
         navigate("/");
+        window.location.reload();
       });
     } catch (error) {
       if (error.code == 'auth/wrong-password' || error.code == 'auth/user-not-found') {
@@ -49,7 +50,7 @@ function Login() {
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <div>
-            <i className="fa-solid fa-user"></i>
+          
             <input
               type="email"
               placeholder="Enter email"
@@ -59,7 +60,7 @@ function Login() {
           </div>
           <label>Password</label>
           <div>
-            <i className="fa-solid fa-lock"></i>
+           
             <input
               type="password"
               placeholder="Enter password"
