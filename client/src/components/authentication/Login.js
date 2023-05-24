@@ -18,7 +18,7 @@ function Login() {
     setError("");
     try {
       await signIn(email, password).then((x) => {
-        navigate("/");
+        navigate("/Rode");
         window.location.reload();
       });
     } catch (error) {

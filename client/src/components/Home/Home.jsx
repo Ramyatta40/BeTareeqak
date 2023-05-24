@@ -46,9 +46,9 @@ function Home() {
       <nav className="home_nav">
         {/*<h1 className="home_logo"><img src="https://www.animatedimages.org/data/media/532/animated-chicken-image-0135.gif" alt="" /></h1>*/}
         <ul className="home_ul">
-          <li><a href='/About'>About</a></li>
-          <li><a href='/Map'>Map</a></li>
-          <li><a href='/Rode'>Ride</a></li>
+          <li><a className='anchor-tag' href='/About'>About</a></li>
+          <li><a className='anchor-tag' href='/Map'>Map</a></li>
+          <li><a className='anchor-tag' href='/Rode'>Ride</a></li>
         </ul>
       </nav>
 
@@ -66,10 +66,10 @@ function Home() {
       </button>
 
       <div ref={secondSectionRef} className="second_section">
-  <h2>Second Section</h2>
+  <h2>About Our Website</h2>
   <div className="boxes_container">
     <div className="box">
-      <img src="https://media1.giphy.com/media/TrJpi4kQ8WnTy/giphy.gif?cid=ecf05e47dniccp5z7s7me3cxw5kv2exr8um5ll7hpfj5z2ki&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Image 1" />
+      <img src="https://i.insider.com/55cbed0769bedd17108b9520?width=400&format=jpeg&auto=webp" alt="Image 1" />
       <p>Enjoy the freedom to choose the driver and the trip</p>
     </div>
     <div className="box">

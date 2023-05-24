@@ -32,7 +32,9 @@ function Profile() {
   const navigate = useNavigate();
 
   const [modal, setModal] = useState(false);
-  
+  const [editPhone,setEditPhone] = useState(false);
+  const [newPhone,setNewPhone] = useState('');
+  const [error,setError] = useState('');
 
   useEffect(() => {
     const getUsersData = async () => {
@@ -63,7 +65,7 @@ function Profile() {
      // driverDoc = doc(db, "Users", currentUserData.id);
     }
   }, [currentUserEmail, usersData]);
-  useEffect(() => {}, [userId]);
+  
 
   const getUserByEmail = (email) => {
     return usersData.find((user) => user.email === email);
@@ -84,7 +86,29 @@ function Profile() {
       reader.readAsDataURL(file);
     }
   };
-
+const handlePhoneChange = async() => {
+  if (!phoneNumberIsValid(newPhone)) {
+    setError("Invalid phone number. Please enter a valid phone number starting with '079', '078', or '077', followed by 7 additional digits.");
+    
+  }
+  else {
+  try {
+    const newFields ={phone: newPhone};
+    const userDoc = doc(db, "Users", userId);
+    await updateDoc(userDoc, newFields);
+    setPhone(newPhone);
+    setEditPhone(false);
+    //window.location.reload();
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+  
+}
+const phoneNumberIsValid = (phoneNumber) => {
+  const phoneNumberRegex = /^(079|078|077)\d{7}$/;
+  return phoneNumberRegex.test(phoneNumber);
+};
   const handleLogout = async () => {
     try {
       await logout();
@@ -99,14 +123,15 @@ function Profile() {
       alert("You have to fill All sections !");
     } else {
       try {
-        setIsDriver(true);
+        
         const newFields = {
           driver: true,
           plateNum: plateNum,
           carModel: carModel,
         };
-        const driverDoc = doc(db, "Users", userId);
-        updateDoc(driverDoc, newFields);
+        const userDoc = doc(db, "Users", userId);
+        updateDoc(userDoc, newFields);
+        setIsDriver(true);
         toggleModal();
         window.location.reload();
       } catch (error) {
@@ -125,8 +150,16 @@ function Profile() {
         <div className="animated-bg"></div> {/* Add the animated background */}
         <div className="profile-info">
           <h1 className="username-profile">{name}</h1>
-          <p className="email-profile">{currentUserEmail}</p>
+          <p className="email-profile">E-Mail Address : { currentUserEmail}</p>
           <label className="phn">Phone Number: {phone}</label>
+          {!editPhone && (<button className="action-button" onClick={()=>{setEditPhone(true)}}>Change Phone Number</button> )}
+{editPhone && (<div> 
+  {error && <p className="warning-paragraph" style={{ color: "red" }}>{error}</p>}
+  <input className="gredient_input" type="text" placeholder="new phone number" onChange={(e)=>{setNewPhone(e.target.value)}}/>
+  <button className="action-button" onClick={handlePhoneChange}>Change</button>
+  <button className="action-button" onClick={()=>{setEditPhone(false);setError('')}
+} >Cancel</button>
+</div> )}
           {isDriver && (<label className="phn">Car Plate Number: {plateNum}</label>)}
           {isDriver && ( <label className="phn">Car Model: {carModel}</label>)}
           

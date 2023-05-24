@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Rode.css';
 import { UserAuth } from '../authentication/AuthContext';
 import { db } from "../authentication/firebaseAuth";
-import { collection, getDocs, addDoc, doc, updateDoc,deleteDoc } from "firebase/firestore"
+import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore"
 import { useNavigate } from 'react-router-dom';
 
 function TripRow(props) {
@@ -25,7 +25,11 @@ function TripRow(props) {
     const [bookBtnVisibility, setBookBtnVisibility] = useState(!passengersArray.includes(currentUserEmail));
     const [cancelBtnVisibility, setCancelBtnVisibility] = useState(passengersArray.includes(currentUserEmail));
     const [time, setTime] = useState('');
-    const [thisTripDriver,setThisTripDriver] = useState(false);
+    const [thisTripDriver, setThisTripDriver] = useState(false);
+    const [editPrice, setEditPrice] = useState(false);
+    const [newPrice, setNewPrice] = useState('');
+    const [price, setPrice] = useState(props.price);
+    //  const [] = useState();
     const navigate = useNavigate();
     useEffect(() => {
         const getUsersData = async () => {
@@ -67,8 +71,8 @@ function TripRow(props) {
 
             try {
                 passengersArray.splice(passengersArray.indexOf(currentUserEmail), 1);
-                passengersNames.splice(passengersNames.indexOf(currentUserEmail),1)
-                const newFields = { passengers: passengersArray ,passengersNames :passengersNames };
+                passengersNames.splice(passengersNames.indexOf(currentUserEmail), 1)
+                const newFields = { passengers: passengersArray, passengersNames: passengersNames };
                 updateDoc(tripDoc, newFields);
                 setBookBtnVisibility(true);
                 setCancelBtnVisibility(false);
@@ -93,7 +97,7 @@ function TripRow(props) {
                 if (passengersArray.length < 3) {
                     passengersArray.push(currentUserEmail);
                     passengersNames.push(name);
-                    const newFields = { passengers: passengersArray,passengersNames :passengersNames };
+                    const newFields = { passengers: passengersArray, passengersNames: passengersNames };
                     updateDoc(tripDoc, newFields);
                     setBookBtnVisibility(false);
                     setCancelBtnVisibility(true);
@@ -110,19 +114,33 @@ function TripRow(props) {
         }
 
     }
-    const handleDeleteTrip =async()=> {
+    const handleDeleteTrip = async () => {
         try {
-            await deleteDoc(tripDoc,props.tripId);
+            await deleteDoc(tripDoc, props.tripId);
             window.location.reload();
         } catch (error) {
             console.log(error.message);
         }
-        
 
-        
     }
     function handleCalculateRoute() {
         navigate("/Map", { state: { pickup: props.pickup, destination: props.destination } });
+    }
+
+    const handleChangePrice = async () => {
+        if (newPrice === '') {
+            alert("Fill the Right Value");
+        }
+        else {
+            try {
+                const newFields = { price: newPrice }
+                await updateDoc(tripDoc, newFields);
+setPrice(newPrice);
+setEditPrice(false);
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
     }
 
     return (
@@ -135,7 +153,12 @@ function TripRow(props) {
             <th>{props.driverPhone}</th>
             <th>{props.plateNum}</th>
             <th>{props.carModel}</th>
-            <th>{props.price} JOD</th>
+            <th>{price} JOD <br /> {(thisTripDriver && !editPrice) && (<button onClick={() => { setEditPrice(true) }} >change</button>)}
+                {editPrice && (<div>
+                    <input type='text' style={{ width: '60px' }} onChange={(e) => { setNewPrice(e.target.value) }} />
+                    <button onClick={handleChangePrice}>change</button><br />
+                    <button onClick={() => { setEditPrice(false) }}>cancel</button>
+                </div>)} </th>
             <th>{passengersNames.join(' - ')}</th>
 
             <th>
@@ -143,7 +166,7 @@ function TripRow(props) {
 
                 {cancelBtnVisibility && (<button onClick={handleCancelButton}  >{"cancel trip"}</button>)}
                 <button onClick={handleCalculateRoute} >Calculate Route</button>
-                {thisTripDriver&&(<button onClick={handleDeleteTrip}> delete this trip</button>)}
+                {thisTripDriver && (<button onClick={handleDeleteTrip}> delete this trip</button>)}
 
             </th>
         </tr>
