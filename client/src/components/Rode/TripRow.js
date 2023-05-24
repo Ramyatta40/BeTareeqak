@@ -54,6 +54,7 @@ function TripRow(props) {
             setName(currentUserData.name);
             setPhone(currentUserData.phone);
             setIsDriver(currentUserData.driver);
+            setPhone(currentUserData.phone);
             setThisTripDriver(currentUserData.phone === props.driverPhone);
         }
 
@@ -162,7 +163,7 @@ setEditPrice(false);
             <th>{passengersNames.join(' - ')}</th>
 
             <th>
-                {bookBtnVisibility && (<button onClick={handleBookButton}  >{"book trip"}</button>)}
+                {(bookBtnVisibility&& !(props.driverPhone === phone)) && (<button onClick={handleBookButton}  >{"book trip"}</button>)}
 
                 {cancelBtnVisibility && (<button onClick={handleCancelButton}  >{"cancel trip"}</button>)}
                 <button onClick={handleCalculateRoute} >Calculate Route</button>
