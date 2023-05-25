@@ -164,6 +164,7 @@ setSearchBtnVisibility('visible');
         </GoogleMap>
       </Box>
       <Box
+      style={{marginTop: "60px"}}
         p={4}
         borderRadius='lg'
         m={4}
