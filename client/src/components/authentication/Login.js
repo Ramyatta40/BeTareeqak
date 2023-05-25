@@ -78,6 +78,9 @@ function Login() {
         <a href="/Register" className="sign-up">
           Sign Up
         </a>
+        <a href="/" className="sign-up">
+          Go Back to Home Page
+        </a>
       </div>
       {modal && (
         <div className="modalForm">

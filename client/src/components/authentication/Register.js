@@ -189,6 +189,7 @@ function Register() {
           </div>
 
           <a href="/Login"> Already Have an Account</a>
+          <a href="/"> Go Back to Home Page</a>
         </form>
       </div>
     </div>

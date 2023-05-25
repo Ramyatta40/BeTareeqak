@@ -49,6 +49,10 @@ function Home() {
           <li><a className='anchor-tag' href='/About'>About</a></li>
           <li><a className='anchor-tag' href='/Map'>Map</a></li>
           <li><a className='anchor-tag' href='/Rode'>Ride</a></li>
+          
+          {!user && (<li><a className='anchor-tag' href='/Login'>Login</a></li>)}
+          {!user && (<li><a className='anchor-tag' href='/Register'>Sign up</a></li>)}
+          
         </ul>
       </nav>
 
