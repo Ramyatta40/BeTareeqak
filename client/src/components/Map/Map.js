@@ -97,6 +97,8 @@ var destinationPassed
      setDirectionsResponse(results)
      setDistance(results.routes[0].legs[0].distance.text)
      setDuration(results.routes[0].legs[0].duration.text)
+     originRef.current.value = pickupPassed
+    destiantionRef.current.value = destinationPassed
   }
 
   async function calculateRoute() {
@@ -172,11 +174,13 @@ setSearchBtnVisibility('visible');
       >
         <HStack spacing={2} justifyContent='space-between'>
           <Box flexGrow={1}>
+            <label >From : </label>
             <Autocomplete>
               <Input type='text' placeholder='Origin' ref={originRef} />
             </Autocomplete>
           </Box>
           <Box flexGrow={1}>
+          <label >To : </label>
             <Autocomplete>
               <Input
                 type='text'
@@ -190,9 +194,7 @@ setSearchBtnVisibility('visible');
             <Button className="A1" colorScheme='pink' type='submit' onClick={calculateRoute}>
               Calculate Route
             </Button>
-            <Button visibility={searchBtnVisibility} className="A1" colorScheme='pink' type='submit' onClick={handleSearch}>
-              add this as a new trip 
-            </Button>
+
             <IconButton
               aria-label='center back'
               icon={<FaTimes />}
