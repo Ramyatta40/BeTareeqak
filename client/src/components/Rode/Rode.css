@@ -36,6 +36,7 @@
     background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color),#ff6584, #ffc600, #0beaa6);
     background-size: 400% 400%;
     animation: gradientAnimation 10s ease infinite;
+    position: fixed;
   }
   
   @keyframes gradientAnimation {

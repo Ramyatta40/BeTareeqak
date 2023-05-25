@@ -199,8 +199,9 @@ const updateTripData = () => {
   }, []);
 
   return (
+    
     <div className="journeyTable">
-      <div className="animated-bg"></div> {/* Add the animated background */}
+      <div className="onimated-bg"></div> {/* Add the animated background */}
 {isDriver && (<button className="ADD" onClick={handleAddNewTrip}>Add new Trip</button>)}
       
       {/* <button onClick={toggleModal2}>Add new Station</button> */}
@@ -332,6 +333,7 @@ const updateTripData = () => {
           </div>
         </div>
       )}
+      
     </div>
   );
 }
