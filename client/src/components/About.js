@@ -14,9 +14,9 @@ return (
 <div className="contact-in">
 <h1>Contact Info</h1>
 <h2><i className="fa fa-phone" aria-hidden="true" /> Phone</h2>
-<p>123-456-789</p>
+<p>0789579150</p>
 <h2><i className="fa fa-envelope" aria-hidden="true" /> Email</h2>
-<p>info@democompany.com</p>
+<p>hijaziaysar02@gmail.com</p>
 <h2><i className="fa fa-map-marker" aria-hidden="true" /> Address</h2>
 <p>jordan,amman</p>
 <ul className="social-icons">
