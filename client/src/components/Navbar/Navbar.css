@@ -12,3 +12,13 @@
     background: transparent;
     backdrop-filter: blur(10px);
   }
+
+ .logOutButton{
+  margin-left: 10px;
+  background-color: blueviolet;
+  color: white;
+  padding: 10px;
+ }
+  
+  
+  

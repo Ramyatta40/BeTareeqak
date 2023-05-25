@@ -17,6 +17,7 @@ function Profile() {
   const { user } = UserAuth();
   var currentUserEmail = user.email;
   var currentUserData;
+  
   //const [] = useState();
    const usersCollectionRef = collection(db, "Users");
   const [isLoading, setIsLoading] = useState(true);
@@ -55,6 +56,7 @@ function Profile() {
     currentUserData = getUserByEmail(currentUserEmail);
     console.log(currentUserEmail);
     console.log(currentUserData);
+    
     if (currentUserData) {
       setName(currentUserData.name);
       setPhone(currentUserData.phone);
