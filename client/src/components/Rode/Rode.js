@@ -6,6 +6,10 @@ import { db } from "../authentication/firebaseAuth";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
 import { Input, HStack } from '@chakra-ui/react'
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const libraries = ['places'];
@@ -40,6 +44,7 @@ const[destinationLoc,setDestinationLoc]=useState('');
   const [price,setPrice] = useState('');
   const [plateNum,setPlateNum] = useState('');
 const [carModel,setCarModel] = useState('');
+const [search,setSearch] = useState('');
   // console.log(
   //   "Pick up location :  " +
   //   getPickup() +
@@ -100,7 +105,25 @@ const [carModel,setCarModel] = useState('');
     });
   };
   // creating new trip entery ----------------------------
+const updateTripData = () => {
+  var index = trips.length;
+  let newArr = [...trips] ; 
+  newArr[index] = {
+    pickup: pickupLoc,
+    destination:destinationLoc,
+    time: time,
+    passengers: [],
+    passengersNames:[],
+    driver: name,
+    price : price,
+    driverPhone: phone,
+    plateNum: plateNum,
+    carModel: carModel,
+    id: '3Rf4g4f4$%f4rss'
+  }
+  setTrips(newArr);
 
+}
 
 
   function handleAddNewTrip() {
@@ -130,6 +153,7 @@ const [carModel,setCarModel] = useState('');
       try {
         createTrip();
         toggleModal();
+        updateTripData();
         //window.location.reload();
       } catch (error) {
         console.log(error.message)
@@ -166,7 +190,7 @@ const [carModel,setCarModel] = useState('');
     const getTrips = async () => {
       const tripsData = await getDocs(tripsCollectionRef);
       setTrips(tripsData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))   );
-
+//console.log(trips);
     };
     getTrips();
 
@@ -182,7 +206,16 @@ const [carModel,setCarModel] = useState('');
       {/* <button onClick={toggleModal2}>Add new Station</button> */}
       <br />
       <h2>All Available Trips</h2>
-      
+      <Form>
+          <InputGroup className='my-3'>
+
+            {/* onChange for search */}
+            <Form.Control
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder='Search Trips By Location'
+            />
+          </InputGroup>
+        </Form>
 
       <table>
         <thead>
@@ -200,7 +233,9 @@ const [carModel,setCarModel] = useState('');
           </tr>
         </thead>
         <tbody>
-          {trips.map((trip) => {
+          {trips.filter((trip)=>{
+            return search.toLowerCase()==='' ? trip : (trip.pickup.toLowerCase().includes(search)|| trip.destination.toLowerCase().includes(search))
+          }).map((trip) => {
             return (
               <TripRow
                 key={trip.id}
