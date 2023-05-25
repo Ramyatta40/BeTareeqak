@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Home.css';
 import { UserAuth } from '../authentication/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import WalkerSound from '../assets/Jony-Love-your-Voice-Official-Lyrical-video-_-My-baby-I-love-my-baby-i-love-your-voice_Luvmp.com_.mp3';
 import playImage from '../assets/play.png';
 import pauseImage from '../assets/pause.png';
 import arrowImage from '../assets/arrow.png';
