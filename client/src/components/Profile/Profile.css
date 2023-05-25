@@ -10,7 +10,7 @@
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 16px;
+  padding: 25px;
   background-color: #fff;
   box-shadow: none;
  max-width: 400px;
@@ -39,12 +39,15 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 8px;
+  padding: 10px;
+  top: 01px;
 }
 
 .email-profile {
   color: black;
   font-family: "Courier New";
   font-weight: bold;
+
 
 
 }

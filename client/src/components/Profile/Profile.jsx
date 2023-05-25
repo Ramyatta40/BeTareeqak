@@ -147,7 +147,6 @@ const phoneNumberIsValid = (phoneNumber) => {
     <div className="card-container">
       <div className="animated-bg"></div> {/* Add the animated background */}
       <div className="card">
-        <div className="animated-bg"></div> {/* Add the animated background */}
         <div className="profile-info">
           <h1 className="username-profile">{name}</h1>
           <p className="email-profile">E-Mail Address : { currentUserEmail}</p>

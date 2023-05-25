@@ -1,6 +1,7 @@
 import React from 'react';
 import './About.css';
 
+import { FaInstagram, FaTwitter, FaFacebook, FaGoogle } from 'react-icons/fa';
 
 function About() {
 return (
@@ -18,11 +19,27 @@ return (
 <p>info@democompany.com</p>
 <h2><i className="fa fa-map-marker" aria-hidden="true" /> Address</h2>
 <p>jordan,amman</p>
-    <ul class="social-icons">
-        <li><a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-        <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+<ul className="social-icons">
+      <li>
+        <a  className="ins" href="https://www.instagram.com">
+          <FaInstagram />
+        </a>
+      </li>
+      <li>
+        <a className='twi' href="https://twitter.com">
+          <FaTwitter />
+        </a>
+      </li>
+      <li>
+        <a className='face' href="https://www.facebook.com">
+          <FaFacebook />
+        </a>
+      </li>
+      <li>
+      <a className='gog' href="https://www.google.com">
+          <FaGoogle/>
+           </a>
+      </li>
     </ul>
 </div>
 <div className="contact-in">
