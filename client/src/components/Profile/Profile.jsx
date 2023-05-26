@@ -120,7 +120,7 @@ const phoneNumberIsValid = (phoneNumber) => {
       console.log(error.message);
     }
   };
-  const handleSubmitDriver = () => {
+  const handleSubmitDriver = async () => {
     if (plateNum === "" || carModel === "") {
       alert("You have to fill All sections !");
     } else {
@@ -132,7 +132,7 @@ const phoneNumberIsValid = (phoneNumber) => {
           carModel: carModel,
         };
         const userDoc = doc(db, "Users", userId);
-        updateDoc(userDoc, newFields);
+        await updateDoc(userDoc, newFields);
         setIsDriver(true);
         toggleModal();
         window.location.reload();

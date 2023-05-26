@@ -69,8 +69,8 @@ function Register() {
 
     try {
       await createUser(email, password);
-      addNewUserData();
-      navigate("/");
+      await addNewUserData();
+      navigate("/Rode");
       window.location.reload();
     } catch (e) {
       setError2(e.massage);

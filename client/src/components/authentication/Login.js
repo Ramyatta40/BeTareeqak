@@ -13,6 +13,7 @@ function Login() {
   const [modal, setModal] = useState(false);
 
   // On Submit handling
+  const handleSubmitReset = () => {}
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -87,7 +88,7 @@ function Login() {
           <div onClick={toggleModal} className="overlayForm"></div>
           <div className="modalForm-content">
             <h5>Enter the email to change the password</h5>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmitReset}>
               <label className="em">Email </label>&nbsp;
               <input type="Email" placeholder=" Email" className="pp" />
             </form>
