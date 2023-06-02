@@ -29,7 +29,7 @@
   z-index: -1;
   background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color),#ff6584, #ffc600, #0beaa6);
   background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;}
+  animation: gradientAnimation 5s ease infinite;}
 
 .profile-info {
   text-align: center;
@@ -169,7 +169,7 @@ body.active-modal {
 
 .pclose-modal {
   position: absolute;
-  top: 190px;
+  top: 255px;
   right: 10px;
   padding: 10px 20px;
   border-radius: 5px;
